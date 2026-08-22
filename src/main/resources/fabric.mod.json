@@ -3,9 +3,9 @@
 	"id": "aris",
 	"version": "${version}",
 	"name": "Aris",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "",
 	"authors": [
-		"Me!"
+		"Tenakt"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -30,6 +30,12 @@
 		"fabric-datagen": [
 			{
 				"value": "com.grindlesstudio.aris.client.ArisDataGenerator",
+				"adapter": "kotlin"
+			}
+		],
+		"terrablender": [
+			{
+				"value": "com.grindlesstudio.aris.worldgen.ArisTerraBlender",
 				"adapter": "kotlin"
 			}
 		]

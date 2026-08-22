@@ -1,0 +1,39 @@
+{
+  "temperature": 0.25,
+  "downfall": 0.8,
+  "has_precipitation": true,
+  "temperature_modifier": "none",
+  "effects": {
+    "fog_color": 12638463,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "sky_color": 7907327,
+    "foliage_color": 16711935,
+    "grass_color": 17664,
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    }
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": [],
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "aris:tall_taiga_tree",
+      "minecraft:patch_grass_taiga"
+    ],
+    []
+  ]
+}
