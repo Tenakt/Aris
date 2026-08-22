@@ -1,5 +1,6 @@
 package com.grindlesstudio.aris
 
+import com.grindlesstudio.aris.block.ModBlocks
 import net.fabricmc.api.ModInitializer
 import net.minecraft.util.Identifier
 import org.slf4j.LoggerFactory
@@ -10,6 +11,8 @@ object Aris : ModInitializer {
 
 	override fun onInitialize() {
 		LOGGER.info("Hello Fabric world!")
+
+		ModBlocks.registerModBlocks()
 	}
 
 	fun id(path: String): Identifier

@@ -29,7 +29,9 @@
     [],
     [],
     [],
-    [],
+    [
+      "aris:pebble_patch"
+    ],
     [
       "aris:tall_taiga_tree",
       "minecraft:patch_grass_taiga"
