@@ -17,7 +17,11 @@ object Aris : ModInitializer {
 	val LOGGER = LoggerFactory.getLogger(MOD_ID)
 
 	override fun onInitialize() {
-		LOGGER.info("Hello Fabric world!")
+		LOGGER.info("========================================")
+		LOGGER.info("Aris initialized")
+		LOGGER.info("Aris terrain range: Y=-350..650")
+		LOGGER.info("Aris sea level: Y=0")
+		LOGGER.info("========================================")
 
 		ModBlocks.registerModBlocks()
 		ModChunkGenerators.register()

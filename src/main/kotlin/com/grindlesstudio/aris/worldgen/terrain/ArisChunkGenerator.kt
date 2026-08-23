@@ -111,6 +111,10 @@ class ArisChunkGenerator(
         structureAccessor: StructureAccessor,
         chunk: Chunk
     ): CompletableFuture<Chunk> {
+        Aris.LOGGER.info(
+            "Aris Terrain Generator ACTIVE — generating chunk {}",
+            chunk.pos
+        )
         val minY = chunk.bottomY
         val maxY = chunk.bottomY + chunk.height
         val arisSeed = getArisSeed(noiseConfig)
