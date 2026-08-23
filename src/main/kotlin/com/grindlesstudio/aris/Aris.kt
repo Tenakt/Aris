@@ -1,6 +1,7 @@
 package com.grindlesstudio.aris
 
 import com.grindlesstudio.aris.block.ModBlocks
+import com.grindlesstudio.aris.worldgen.ModChunkGenerators
 import net.fabricmc.api.ModInitializer
 import net.minecraft.util.Identifier
 import org.slf4j.LoggerFactory
@@ -13,6 +14,7 @@ object Aris : ModInitializer {
 		LOGGER.info("Hello Fabric world!")
 
 		ModBlocks.registerModBlocks()
+		ModChunkGenerators.register()
 	}
 
 	fun id(path: String): Identifier
