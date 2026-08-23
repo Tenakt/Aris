@@ -1,7 +1,12 @@
 package com.grindlesstudio.aris.block
 
 import com.grindlesstudio.aris.Aris
-import net.minecraft.block.*
+import net.minecraft.block.AbstractBlock
+import net.minecraft.block.Block
+import net.minecraft.block.BlockState
+import net.minecraft.block.Blocks
+import net.minecraft.block.ShapeContext
+import net.minecraft.block.SlabBlock
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
 import net.minecraft.registry.Registries
@@ -13,9 +18,18 @@ import net.minecraft.util.shape.VoxelShape
 import net.minecraft.util.shape.VoxelShapes
 import net.minecraft.world.BlockView
 
+// ============================================================
 // Маленький камешек
-class PebbleBlock(settings: AbstractBlock.Settings) : Block(settings) {
+// ============================================================
 
+class PebbleBlock(
+    settings: AbstractBlock.Settings
+) : Block(settings) {
+
+    // Хитбокс:
+    // ширина 0.4 блока
+    // глубина 0.4 блока
+    // высота 2 пикселя
     override fun getOutlineShape(
         state: BlockState,
         world: BlockView,
@@ -23,91 +37,137 @@ class PebbleBlock(settings: AbstractBlock.Settings) : Block(settings) {
         context: ShapeContext
     ): VoxelShape {
         return VoxelShapes.cuboid(
-            0.3, 0.0, 0.3,
-            0.7, 0.125, 0.7
+            0.3,
+            0.0,
+            0.3,
+            0.7,
+            0.125,
+            0.7
         )
     }
 }
 
+
+// ============================================================
+// Регистрация блоков Aris
+// ============================================================
+
 object ModBlocks {
 
-    // =========================================================
-    // DIRT SLAB
-    // =========================================================
+    // --------------------------------------------------------
+    // Полублок земли
+    // --------------------------------------------------------
 
     val DIRT_SLAB: Block = registerBlock(
-        "dirt_slab"
-    ) { settings ->
-        SlabBlock(
-            settings
-        )
-    }
+        name = "dirt_slab",
+        settings = { key ->
+            AbstractBlock.Settings
+                .copy(Blocks.DIRT)
+                .registryKey(key)
+        },
+        factory = { settings ->
+            SlabBlock(settings)
+        }
+    )
 
-    // =========================================================
-    // GRASS SLAB
-    // =========================================================
+
+    // --------------------------------------------------------
+    // Полублок дёрна
+    // --------------------------------------------------------
 
     val GRASS_SLAB: Block = registerBlock(
-        "grass_slab"
-    ) { settings ->
-        SlabBlock(
-            settings
-        )
-    }
+        name = "grass_slab",
+        settings = { key ->
+            AbstractBlock.Settings
+                .copy(Blocks.GRASS_BLOCK)
+                .registryKey(key)
+        },
+        factory = { settings ->
+            SlabBlock(settings)
+        }
+    )
 
-    // =========================================================
-    // PEBBLE
-    // =========================================================
+
+    // --------------------------------------------------------
+    // Маленький камешек
+    // --------------------------------------------------------
 
     val PEBBLE: Block = registerBlock(
-        "pebble"
-    ) { settings ->
-        PebbleBlock(
-            settings
+        name = "pebble",
+        settings = { key ->
+            AbstractBlock.Settings
+                .copy(Blocks.STONE)
+                .registryKey(key)
                 .nonOpaque()
                 .noCollision()
-        )
-    }
+        },
+        factory = { settings ->
+            PebbleBlock(settings)
+        }
+    )
 
-    // =========================================================
-    // РЕГИСТРАЦИЯ
-    // =========================================================
+
+    // ========================================================
+    // Общая регистрация блока + BlockItem
+    // ========================================================
 
     private fun registerBlock(
         name: String,
+        settings: (RegistryKey<Block>) -> AbstractBlock.Settings,
         factory: (AbstractBlock.Settings) -> Block
     ): Block {
 
         val id = Aris.id(name)
 
+        // ----------------------------------------------------
         // Сначала создаём RegistryKey блока
+        // ----------------------------------------------------
+
         val blockKey = RegistryKey.of(
             RegistryKeys.BLOCK,
             id
         )
 
-        // Settings сразу получает ID блока
-        val settings = AbstractBlock.Settings
-            .create()
-            .registryKey(blockKey)
+        // ----------------------------------------------------
+        // Создаём Settings уже с RegistryKey
+        //
+        // Это важно для Minecraft 1.21.11.
+        // Без этого SlabBlock может вызвать:
+        //
+        // NullPointerException: Block id not set
+        // ----------------------------------------------------
 
-        // Создаём блок уже с известным ID
-        val block = factory(settings)
+        val blockSettings = settings(blockKey)
 
+        // ----------------------------------------------------
+        // Создаём сам блок
+        // ----------------------------------------------------
+
+        val block = factory(blockSettings)
+
+        // ----------------------------------------------------
         // Регистрируем блок
+        // ----------------------------------------------------
+
         Registry.register(
             Registries.BLOCK,
             id,
             block
         )
 
-        // RegistryKey предмета
+        // ----------------------------------------------------
+        // Создаём RegistryKey предмета
+        // ----------------------------------------------------
+
         val itemKey = RegistryKey.of(
             RegistryKeys.ITEM,
             id
         )
 
+        // ----------------------------------------------------
         // Регистрируем BlockItem
+        // ----------------------------------------------------
+
         Registry.register(
             Registries.ITEM,
             id,
@@ -118,8 +178,17 @@ object ModBlocks {
             )
         )
 
+        Aris.LOGGER.info(
+            "Зарегистрирован блок: $id"
+        )
+
         return block
     }
+
+
+    // ========================================================
+    // Вызов регистрации
+    // ========================================================
 
     fun registerModBlocks() {
         Aris.LOGGER.info(
