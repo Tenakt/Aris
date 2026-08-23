@@ -2,8 +2,8 @@
   "feature": "aris:pebble_patch",
   "placement": [
     {
-      "type": "minecraft:count",
-      "count": 4
+      "type": "minecraft:rarity_filter",
+      "chance": 12
     },
     {
       "type": "minecraft:in_square"

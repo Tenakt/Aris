@@ -14,9 +14,10 @@ import net.minecraft.registry.Registry
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
 import net.minecraft.util.shape.VoxelShape
-import net.minecraft.util.shape.VoxelShapes
 import net.minecraft.world.BlockView
+import net.minecraft.world.WorldView
 
 // ============================================================
 // Маленький камешек
@@ -24,16 +25,23 @@ import net.minecraft.world.BlockView
 
 class PebbleBlock(settings: Settings) : Block(settings) {
 
+    // Проверка: камушек стоит только над твердой гранью блока
+    override fun canPlaceAt(state: BlockState, world: WorldView, pos: BlockPos): Boolean {
+        val downPos = pos.down()
+        return world.getBlockState(downPos).isSideSolidFullSquare(world, downPos, Direction.UP)
+    }
+
     override fun getOutlineShape(
         state: BlockState,
         world: BlockView,
         pos: BlockPos,
         context: ShapeContext
     ): VoxelShape {
-        return VoxelShapes.cuboid(
-            0.3, 0.0, 0.3,
-            0.7, 0.125, 0.7
-        )
+        val baseShape = Block.createCuboidShape(4.8, 0.0, 4.8, 11.2, 2.0, 11.2)
+
+        // В 1.21.11 getModelOffset принимает только pos
+        val offset = state.getModelOffset(pos)
+        return baseShape.offset(offset.x, offset.y, offset.z)
     }
 }
 
@@ -60,7 +68,6 @@ object ModBlocks {
         }
     )
 
-
     // --------------------------------------------------------
     // Полублок дёрна
     // --------------------------------------------------------
@@ -77,7 +84,6 @@ object ModBlocks {
         }
     )
 
-
     // --------------------------------------------------------
     // Маленький камешек
     // --------------------------------------------------------
@@ -90,12 +96,12 @@ object ModBlocks {
                 .registryKey(key)
                 .nonOpaque()
                 .noCollision()
+                .offset(AbstractBlock.OffsetType.XZ) // <--- Включает случайное смещение для 1.21.11
         },
         factory = { settings ->
             PebbleBlock(settings)
         }
     )
-
 
     // ========================================================
     // Общая регистрация блока + BlockItem
@@ -109,80 +115,24 @@ object ModBlocks {
 
         val id = Aris.id(name)
 
-        // ----------------------------------------------------
-        // Сначала создаём RegistryKey блока
-        // ----------------------------------------------------
-
-        val blockKey = RegistryKey.of(
-            RegistryKeys.BLOCK,
-            id
-        )
-
-        // ----------------------------------------------------
-        // Создаём Settings уже с RegistryKey
-        //
-        // Это важно для Minecraft 1.21.11.
-        // Без этого SlabBlock может вызвать:
-        //
-        // NullPointerException: Block id not set
-        // ----------------------------------------------------
-
+        val blockKey = RegistryKey.of(RegistryKeys.BLOCK, id)
         val blockSettings = settings(blockKey)
-
-        // ----------------------------------------------------
-        // Создаём сам блок
-        // ----------------------------------------------------
-
         val block = factory(blockSettings)
 
-        // ----------------------------------------------------
-        // Регистрируем блок
-        // ----------------------------------------------------
+        Registry.register(Registries.BLOCK, id, block)
 
-        Registry.register(
-            Registries.BLOCK,
-            id,
-            block
-        )
-
-        // ----------------------------------------------------
-        // Создаём RegistryKey предмета
-        // ----------------------------------------------------
-
-        val itemKey = RegistryKey.of(
-            RegistryKeys.ITEM,
-            id
-        )
-
-        // ----------------------------------------------------
-        // Регистрируем BlockItem
-        // ----------------------------------------------------
-
+        val itemKey = RegistryKey.of(RegistryKeys.ITEM, id)
         Registry.register(
             Registries.ITEM,
             id,
-            BlockItem(
-                block,
-                Item.Settings()
-                    .registryKey(itemKey)
-            )
+            BlockItem(block, Item.Settings().registryKey(itemKey))
         )
 
-        Aris.LOGGER.info(
-            "Зарегистрирован блок: $id"
-        )
-
+        Aris.LOGGER.info("Зарегистрирован блок: $id")
         return block
     }
 
-
-    // ========================================================
-    // Вызов регистрации
-    // ========================================================
-
     fun registerModBlocks() {
-        Aris.LOGGER.info(
-            "Регистрация блоков для ${Aris.MOD_ID}"
-        )
+        Aris.LOGGER.info("Регистрация блоков для ${Aris.MOD_ID}")
     }
 }

@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
-      "model": "aris:block/pebble"
-    }
+    "": [
+      { "model": "aris:block/pebble" },
+      { "model": "aris:block/pebble", "y": 90 },
+      { "model": "aris:block/pebble", "y": 180 },
+      { "model": "aris:block/pebble", "y": 270 }
+    ]
   }
 }
