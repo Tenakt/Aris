@@ -22,14 +22,8 @@ import net.minecraft.world.BlockView
 // Маленький камешек
 // ============================================================
 
-class PebbleBlock(
-    settings: AbstractBlock.Settings
-) : Block(settings) {
+class PebbleBlock(settings: Settings) : Block(settings) {
 
-    // Хитбокс:
-    // ширина 0.4 блока
-    // глубина 0.4 блока
-    // высота 2 пикселя
     override fun getOutlineShape(
         state: BlockState,
         world: BlockView,
@@ -37,12 +31,8 @@ class PebbleBlock(
         context: ShapeContext
     ): VoxelShape {
         return VoxelShapes.cuboid(
-            0.3,
-            0.0,
-            0.3,
-            0.7,
-            0.125,
-            0.7
+            0.3, 0.0, 0.3,
+            0.7, 0.125, 0.7
         )
     }
 }

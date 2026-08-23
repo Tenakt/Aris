@@ -1,0 +1,32 @@
+{
+  "textures": {
+    "stone": "minecraft:block/stone",
+    "particle": "minecraft:block/stone"
+  },
+  "elements": [
+    {
+      "from": [4.8, 0, 4.8],
+      "to": [11.2, 2, 11.2],
+      "faces": {
+        "down": {
+          "texture": "#stone"
+        },
+        "up": {
+          "texture": "#stone"
+        },
+        "north": {
+          "texture": "#stone"
+        },
+        "south": {
+          "texture": "#stone"
+        },
+        "west": {
+          "texture": "#stone"
+        },
+        "east": {
+          "texture": "#stone"
+        }
+      }
+    }
+  ]
+}

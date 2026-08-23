@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "aris:block/dirt_slab"
+    },
+    "type=top": {
+      "model": "aris:block/dirt_slab_top"
+    },
+    "type=double": {
+      "model": "aris:block/dirt_slab_double"
+    }
+  }
+}
