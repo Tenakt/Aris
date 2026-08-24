@@ -1,10 +1,6 @@
 {
-  "feature": "aris:pebble_patch",
+  "feature": "aris:slope_slabs",
   "placement": [
-    {
-      "type": "minecraft:rarity_filter",
-      "chance": 12
-    },
     {
       "type": "minecraft:in_square"
     },

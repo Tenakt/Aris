@@ -1,6 +1,6 @@
 {
-  "temperature": 0.25,
-  "downfall": 0.8,
+  "temperature": 0.8,
+  "downfall": 0.4,
   "has_precipitation": true,
   "temperature_modifier": "none",
   "effects": {
@@ -8,14 +8,7 @@
     "water_color": 4159204,
     "water_fog_color": 329011,
     "sky_color": 7907327,
-    "foliage_color": 16711935,
-    "grass_color": 17664,
-    "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2.0
-    }
+    "grass_color": 9485880
   },
   "spawners": {},
   "spawn_costs": {},
@@ -31,10 +24,12 @@
     [],
     [],
     [
-      "aris:tall_taiga_tree",
-      "minecraft:patch_grass_taiga",
       "aris:pebble_patch",
-      "aris:slope_slabs"
+      "aris:slope_slabs",
+      "minecraft:patch_grass_plain",
+      "minecraft:patch_tall_grass",
+      "minecraft:flower_plains",
+      "minecraft:fancy_oak_checked"
     ],
     []
   ]

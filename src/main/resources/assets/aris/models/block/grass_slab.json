@@ -14,7 +14,8 @@
           "texture": "#bottom"
         },
         "up": {
-          "texture": "#top"
+          "texture": "#top",
+          "tintindex": 0
         },
         "north": {
           "texture": "#side"

@@ -1,6 +1,7 @@
 package com.grindlesstudio.aris
 
 import com.grindlesstudio.aris.block.ModBlocks
+import com.grindlesstudio.aris.registry.ModFeatures
 import com.grindlesstudio.aris.worldgen.ModChunkGenerators
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications
@@ -25,6 +26,7 @@ object Aris : ModInitializer {
 
 		ModBlocks.registerModBlocks()
 		ModChunkGenerators.register()
+		ModFeatures.registerFeatures()
 
 		// Внедрение генерации камушков во все биомы Верхнего мира
 		val pebblePatchKey: RegistryKey<PlacedFeature> = RegistryKey.of(
