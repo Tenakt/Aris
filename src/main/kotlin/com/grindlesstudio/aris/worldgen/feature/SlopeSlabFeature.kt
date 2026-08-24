@@ -48,7 +48,13 @@ class SlopeSlabFeature(configCodec: Codec<DefaultFeatureConfig>) : Feature<Defau
                     }
 
                     if (slabState != null) {
+                        // 1. Ставим полублок
                         world.setBlockState(abovePos, slabState, 3)
+
+                        // 2. Превращаем перекрытый дёрн снизу в грязь
+                        if (state.isOf(Blocks.GRASS_BLOCK)) {
+                            world.setBlockState(pos, Blocks.DIRT.defaultState, 3)
+                        }
                     }
                 }
             }

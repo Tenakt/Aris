@@ -9,7 +9,6 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.util.Identifier
-import net.minecraft.world.biome.BiomeKeys
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.feature.PlacedFeature
 import org.slf4j.LoggerFactory
@@ -36,20 +35,7 @@ object Aris : ModInitializer {
 		)
 
 		BiomeModifications.addFeature(
-			BiomeSelectors.includeByKey(
-				BiomeKeys.PLAINS,
-				BiomeKeys.TAIGA,
-				BiomeKeys.FOREST,
-				BiomeKeys.BIRCH_FOREST,
-				BiomeKeys.OLD_GROWTH_BIRCH_FOREST,
-				BiomeKeys.SNOWY_TAIGA,
-				BiomeKeys.SNOWY_PLAINS,
-				BiomeKeys.MEADOW,
-				BiomeKeys.GROVE,
-				BiomeKeys.JAGGED_PEAKS,
-				BiomeKeys.FROZEN_PEAKS,
-				BiomeKeys.STONY_PEAKS
-			),
+			BiomeSelectors.foundInOverworld(),
 			GenerationStep.Feature.VEGETAL_DECORATION,
 			pebblePatchKey
 		)

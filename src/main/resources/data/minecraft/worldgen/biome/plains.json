@@ -25,11 +25,7 @@
     [],
     [
       "aris:pebble_patch",
-      "aris:slope_slabs",
-      "minecraft:patch_grass_plain",
-      "minecraft:patch_tall_grass",
-      "minecraft:flower_plains",
-      "minecraft:fancy_oak_checked"
+      "aris:slope_slabs"
     ],
     []
   ]
