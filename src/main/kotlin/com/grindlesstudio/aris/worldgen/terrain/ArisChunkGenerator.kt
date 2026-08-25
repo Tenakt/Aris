@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.HeightLimitView
+import net.minecraft.world.biome.BiomeKeys
 import net.minecraft.world.biome.source.BiomeSource
 import net.minecraft.world.chunk.Chunk
 import net.minecraft.world.gen.StructureAccessor
@@ -25,19 +26,23 @@ class ArisChunkGenerator(
 
         val CODEC: MapCodec<ArisChunkGenerator> =
             RecordCodecBuilder.mapCodec { instance ->
+
                 instance.group(
-                    BiomeSource.CODEC.fieldOf("biome_source")
+
+                    BiomeSource.CODEC
+                        .fieldOf("biome_source")
                         .forGetter { generator ->
                             generator.biomeSource
                         }
-                ).apply(instance, ::ArisChunkGenerator)
+
+                ).apply(
+                    instance,
+                    ::ArisChunkGenerator
+                )
             }
 
         /*
          * Этот флаг нужен только для диагностики.
-         *
-         * Он позволит написать в лог сообщение один раз,
-         * а не спамить лог каждым чанком.
          */
         private var firstChunkLogged = false
     }
@@ -46,19 +51,6 @@ class ArisChunkGenerator(
         return CODEC
     }
 
-    /*
-     * Технический диапазон Minecraft.
-     *
-     * Наш дизайн Aris:
-     *
-     *      -350 ... 650
-     *
-     * Но Minecraft использует технический диапазон:
-     *
-     *      -352 ... 655
-     *
-     * Последние значения нужны только для технической совместимости.
-     */
     override fun getWorldHeight(): Int {
         return 1008
     }
@@ -71,20 +63,108 @@ class ArisChunkGenerator(
         return ArisTerrain.SEA_LEVEL
     }
 
-    /*
-     * Получаем стабильный seed для Terrain Engine.
-     *
-     * Один и тот же Minecraft world seed
-     * → один и тот же Aris terrain.
-     *
-     * Другой world seed
-     * → другой Aris terrain.
+    /**
+     * Получаем стабильный seed Aris.
      */
-    private fun getArisSeed(noiseConfig: NoiseConfig): Long {
+    private fun getArisSeed(
+        noiseConfig: NoiseConfig
+    ): Long {
+
         return noiseConfig
-            .getOrCreateRandomDeriver(Aris.id("terrain"))
+            .getOrCreateRandomDeriver(
+                Aris.id("terrain")
+            )
             .split(0L)
             .nextLong()
+    }
+
+    /**
+     * Проверяем, является ли точка Plains.
+     *
+     * Minecraft уже имеет biome source.
+     * Мы просто спрашиваем его:
+     *
+     * "Какой biome находится здесь?"
+     */
+    private fun isPlains(
+        x: Int,
+        y: Int,
+        z: Int,
+        noiseConfig: NoiseConfig
+    ): Boolean {
+
+        val biome =
+            biomeSource.getBiome(
+                x,
+                y,
+                z,
+                noiseConfig.getMultiNoiseSampler()
+            )
+
+        return biome.matchesKey(
+            BiomeKeys.PLAINS
+        )
+    }
+
+    /**
+     * Получает высоту terrain.
+     *
+     * Если это Plains:
+     *     используем плоский terrain.
+     *
+     * Иначе:
+     *     обычный Aris terrain.
+     */
+    private fun getSurfaceHeight(
+        x: Int,
+        z: Int,
+        noiseConfig: NoiseConfig
+    ): Int {
+
+        val seed =
+            getArisSeed(noiseConfig)
+
+        /*
+         * Сначала получаем обычную высоту Aris.
+         *
+         * Это нужно в том числе для определения biome
+         * на уровне поверхности.
+         */
+        val normalHeight =
+            ArisTerrain.getHeight(
+                x,
+                z,
+                seed
+            )
+
+        /*
+         * Узнаём biome именно около поверхности.
+         */
+        val plains =
+            isPlains(
+                x,
+                normalHeight,
+                z,
+                noiseConfig
+            )
+
+        /*
+         * Если это не Plains —
+         * вообще ничего не меняем.
+         */
+        if (!plains) {
+            return normalHeight
+        }
+
+        /*
+         * Если это Plains —
+         * используем специальный terrain.
+         */
+        return ArisTerrain.getPlainsHeight(
+            x,
+            z,
+            seed
+        )
     }
 
     override fun getHeight(
@@ -95,10 +175,10 @@ class ArisChunkGenerator(
         noiseConfig: NoiseConfig
     ): Int {
 
-        return ArisTerrain.getHeight(
+        return getSurfaceHeight(
             x,
             z,
-            getArisSeed(noiseConfig)
+            noiseConfig
         )
     }
 
@@ -109,22 +189,28 @@ class ArisChunkGenerator(
         noiseConfig: NoiseConfig
     ): VerticalBlockSample {
 
-        val minY = world.bottomY
-        val height = world.height
+        val minY =
+            world.bottomY
 
-        val states = Array(height) {
-            Blocks.AIR.defaultState
-        }
+        val height =
+            world.height
 
-        val surfaceY = ArisTerrain.getHeight(
-            x,
-            z,
-            getArisSeed(noiseConfig)
-        )
+        val states =
+            Array(height) {
+                Blocks.AIR.defaultState
+            }
+
+        val surfaceY =
+            getSurfaceHeight(
+                x,
+                z,
+                noiseConfig
+            )
 
         for (index in states.indices) {
 
-            val y = minY + index
+            val y =
+                minY + index
 
             states[index] =
                 getBlockStateForHeight(
@@ -147,51 +233,67 @@ class ArisChunkGenerator(
     ): CompletableFuture<Chunk> {
 
         /*
-         * =========================================================
-         * ARIS DIAGNOSTICS
-         * =========================================================
+         * ========================================================
+         * DIAGNOSTICS
+         * ========================================================
          */
 
         if (!firstChunkLogged) {
 
             firstChunkLogged = true
 
-            val arisSeed = getArisSeed(noiseConfig)
+            val arisSeed =
+                getArisSeed(noiseConfig)
 
-            Aris.LOGGER.info("========================================")
-            Aris.LOGGER.info("ARIS TERRAIN ENGINE ACTIVE")
-            Aris.LOGGER.info("Generator: aris:aris")
+            Aris.LOGGER.info(
+                "========================================"
+            )
+
+            Aris.LOGGER.info(
+                "ARIS TERRAIN ENGINE ACTIVE"
+            )
+
+            Aris.LOGGER.info(
+                "Generator: aris:aris"
+            )
+
             Aris.LOGGER.info(
                 "Terrain range: Y=${ArisTerrain.MIN_HEIGHT}..${ArisTerrain.MAX_HEIGHT}"
             )
+
             Aris.LOGGER.info(
                 "Sea level: Y=${ArisTerrain.SEA_LEVEL}"
             )
+
             Aris.LOGGER.info(
                 "Aris seed: $arisSeed"
             )
+
             Aris.LOGGER.info(
                 "First terrain chunk: ${chunk.pos}"
             )
-            Aris.LOGGER.info("========================================")
+
+            Aris.LOGGER.info(
+                "========================================"
+            )
         }
 
         /*
-         * =========================================================
+         * ========================================================
          * TERRAIN GENERATION
-         * =========================================================
+         * ========================================================
          */
 
-        val minY = chunk.bottomY
-        val maxY = chunk.bottomY + chunk.height
+        val minY =
+            chunk.bottomY
 
-        val arisSeed = getArisSeed(noiseConfig)
+        val maxY =
+            chunk.bottomY + chunk.height
 
         /*
-         * Чанк Minecraft имеет размер 16x16 блоков.
+         * Чанк 16x16.
          *
-         * Поэтому мы рассчитываем высоту отдельно
-         * для каждой координаты X/Z.
+         * Для каждой X/Z рассчитываем свою высоту.
          */
         for (localX in 0 until 16) {
 
@@ -204,27 +306,18 @@ class ArisChunkGenerator(
                     chunk.pos.startZ + localZ
 
                 /*
-                 * Здесь происходит главное:
-                 *
-                 * Minecraft спрашивает:
-                 *
-                 * "Какая высота terrain в этой точке?"
-                 *
-                 * Aris отвечает:
-                 *
-                 * "Вот высота, которую рассчитал мой Terrain Engine."
+                 * Здесь теперь используется
+                 * Plains-aware terrain.
                  */
                 val surfaceY =
-                    ArisTerrain.getHeight(
+                    getSurfaceHeight(
                         worldX,
                         worldZ,
-                        arisSeed
+                        noiseConfig
                     )
 
                 /*
-                 * Заполняем колонку блоками
-                 * от нижней границы мира
-                 * до поверхности.
+                 * Заполняем колонку.
                  */
                 for (y in minY until maxY) {
 
@@ -250,12 +343,15 @@ class ArisChunkGenerator(
             }
         }
 
-        return CompletableFuture.completedFuture(chunk)
+        return CompletableFuture.completedFuture(
+            chunk
+        )
     }
 
-    /*
-     * Определяем, какой блок должен находиться
-     * на конкретной высоте.
+    /**
+     * Определяем блок на конкретной высоте.
+     *
+     * Эту часть мы НЕ меняем.
      */
     private fun getBlockStateForHeight(
         y: Int,
@@ -263,9 +359,9 @@ class ArisChunkGenerator(
     ): BlockState {
 
         /*
-         * =========================================================
+         * ========================================================
          * OCEAN
-         * =========================================================
+         * ========================================================
          */
 
         if (surfaceY < ArisTerrain.SEA_LEVEL) {
@@ -275,7 +371,9 @@ class ArisChunkGenerator(
              */
             if (y <= surfaceY) {
 
-                return if (y >= surfaceY - 2) {
+                return if (
+                    y >= surfaceY - 2
+                ) {
                     Blocks.SAND.defaultState
                 } else {
                     Blocks.STONE.defaultState
@@ -283,9 +381,10 @@ class ArisChunkGenerator(
             }
 
             /*
-             * Вода от дна до уровня моря.
+             * Вода до уровня моря.
              */
             if (y <= ArisTerrain.SEA_LEVEL) {
+
                 return Blocks.WATER.defaultState
             }
 
@@ -293,9 +392,9 @@ class ArisChunkGenerator(
         }
 
         /*
-         * =========================================================
+         * ========================================================
          * LAND
-         * =========================================================
+         * ========================================================
          */
 
         if (y <= surfaceY) {
@@ -304,18 +403,20 @@ class ArisChunkGenerator(
              * Верхний блок.
              */
             if (y == surfaceY) {
+
                 return Blocks.GRASS_BLOCK.defaultState
             }
 
             /*
-             * Два слоя земли под травой.
+             * Два блока земли.
              */
             if (y >= surfaceY - 2) {
+
                 return Blocks.DIRT.defaultState
             }
 
             /*
-             * Всё глубже — камень.
+             * Остальное — камень.
              */
             return Blocks.STONE.defaultState
         }
@@ -326,13 +427,6 @@ class ArisChunkGenerator(
         return Blocks.AIR.defaultState
     }
 
-    /*
-     * Пещеры пока отключены.
-     *
-     * Позже здесь появится:
-     *
-     * Aris Underground
-     */
     override fun carve(
         chunkRegion: net.minecraft.world.ChunkRegion,
         seed: Long,
@@ -344,9 +438,6 @@ class ArisChunkGenerator(
         // Aris Underground будет добавлен позже.
     }
 
-    /*
-     * Поверхность уже создаётся в populateNoise().
-     */
     override fun buildSurface(
         region: net.minecraft.world.ChunkRegion,
         structures: StructureAccessor,
@@ -356,20 +447,14 @@ class ArisChunkGenerator(
         // Surface уже создан Aris.
     }
 
-    /*
-     * Пока Aris сам ничего не добавляет
-     * в populateEntities().
-     */
     override fun populateEntities(
         region: net.minecraft.world.ChunkRegion
     ) {
         // Пока ничего не делаем.
     }
 
-    /*
+    /**
      * F3 → Debug HUD.
-     *
-     * Показывает высоту Aris в текущей позиции.
      */
     override fun appendDebugHudText(
         text: MutableList<String>,
@@ -378,13 +463,18 @@ class ArisChunkGenerator(
     ) {
 
         val height =
-            ArisTerrain.getHeight(
+            getSurfaceHeight(
                 pos.x,
                 pos.z,
-                getArisSeed(noiseConfig)
+                noiseConfig
             )
 
-        text.add("Aris Terrain")
-        text.add("Aris Height: $height")
+        text.add(
+            "Aris Terrain"
+        )
+
+        text.add(
+            "Aris Height: $height"
+        )
     }
 }
