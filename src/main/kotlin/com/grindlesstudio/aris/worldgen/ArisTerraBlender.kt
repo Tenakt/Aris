@@ -34,7 +34,7 @@ class ArisOverworldRegion(name: Identifier, weight: Int) : Region(name, RegionTy
         registry: Registry<Biome>,
         mapper: Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>>
     ) {
-        // 1. Тайга (Холодный и умеренно-влажный климат)
+        // 1. Тайга
         val taigaPoints = ParameterUtils.ParameterPointListBuilder()
             .temperature(ParameterUtils.Temperature.COOL, ParameterUtils.Temperature.FROZEN)
             .humidity(ParameterUtils.Humidity.NEUTRAL, ParameterUtils.Humidity.WET)
@@ -48,7 +48,7 @@ class ArisOverworldRegion(name: Identifier, weight: Int) : Region(name, RegionTy
             mapper.accept(Pair.of(point, BiomeKeys.TAIGA))
         }
 
-        // 2. Равнины (Умеренно-теплый и сухой/нейтральный климат)
+        // 2. Равнины
         val plainsPoints = ParameterUtils.ParameterPointListBuilder()
             .temperature(ParameterUtils.Temperature.NEUTRAL, ParameterUtils.Temperature.WARM)
             .humidity(ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.NEUTRAL)
