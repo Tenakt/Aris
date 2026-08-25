@@ -18,9 +18,9 @@ import java.util.function.Consumer
 
 class ArisTerraBlender : TerraBlenderApi {
     override fun onTerraBlenderInitialized() {
-        Regions.register(ArisOverworldRegion(Aris.id("overworld_region"), 4))
+        // Вес 10 даст паритет с ванильным генератором (50/50)
+        Regions.register(ArisOverworldRegion(Aris.id("overworld_region"), 10))
 
-        // Добавляем скалистые склоны для Верхнего мира
         SurfaceRuleManager.addSurfaceRules(
             SurfaceRuleManager.RuleCategory.OVERWORLD,
             Aris.MOD_ID,
@@ -34,17 +34,32 @@ class ArisOverworldRegion(name: Identifier, weight: Int) : Region(name, RegionTy
         registry: Registry<Biome>,
         mapper: Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>>
     ) {
-        val points = ParameterUtils.ParameterPointListBuilder()
+        // 1. Тайга (Холодный и умеренно-влажный климат)
+        val taigaPoints = ParameterUtils.ParameterPointListBuilder()
             .temperature(ParameterUtils.Temperature.COOL, ParameterUtils.Temperature.FROZEN)
-            .humidity(ParameterUtils.Humidity.NEUTRAL)
+            .humidity(ParameterUtils.Humidity.NEUTRAL, ParameterUtils.Humidity.WET)
             .continentalness(ParameterUtils.Continentalness.FAR_INLAND)
-            .erosion(ParameterUtils.Erosion.EROSION_5, ParameterUtils.Erosion.EROSION_6) // Холмы и горы
+            .erosion(ParameterUtils.Erosion.EROSION_0, ParameterUtils.Erosion.EROSION_2)
             .depth(ParameterUtils.Depth.SURFACE)
-            .weirdness(ParameterUtils.Weirdness.LOW_SLICE_NORMAL_DESCENDING, ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING)
+            .weirdness(ParameterUtils.Weirdness.FULL_RANGE)
             .build()
 
-        for (point in points) {
+        for (point in taigaPoints) {
             mapper.accept(Pair.of(point, BiomeKeys.TAIGA))
+        }
+
+        // 2. Равнины (Умеренно-теплый и сухой/нейтральный климат)
+        val plainsPoints = ParameterUtils.ParameterPointListBuilder()
+            .temperature(ParameterUtils.Temperature.NEUTRAL, ParameterUtils.Temperature.WARM)
+            .humidity(ParameterUtils.Humidity.DRY, ParameterUtils.Humidity.NEUTRAL)
+            .continentalness(ParameterUtils.Continentalness.FAR_INLAND)
+            .erosion(ParameterUtils.Erosion.EROSION_5, ParameterUtils.Erosion.EROSION_6)
+            .depth(ParameterUtils.Depth.SURFACE)
+            .weirdness(ParameterUtils.Weirdness.FULL_RANGE)
+            .build()
+
+        for (point in plainsPoints) {
+            mapper.accept(Pair.of(point, BiomeKeys.PLAINS))
         }
     }
 }
