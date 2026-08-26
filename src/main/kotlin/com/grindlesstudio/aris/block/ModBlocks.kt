@@ -84,6 +84,18 @@ object ModBlocks {
         }
     )
 
+    val SAND_SLAB: Block = registerBlock(
+        name = "sand_slab",
+        settings = { key ->
+            AbstractBlock.Settings
+                .copy(Blocks.SAND)
+                .registryKey(key)
+        },
+        factory = { settings ->
+            ArisLeavesBlock(settings)
+        }
+    )
+
     // --------------------------------------------------------
     // Маленький камешек
     // --------------------------------------------------------
