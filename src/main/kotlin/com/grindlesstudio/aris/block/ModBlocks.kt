@@ -103,6 +103,18 @@ object ModBlocks {
         }
     )
 
+    val TAIGA_LEAVES: Block = registerBlock(
+        name = "taiga_leaves",
+        settings = { key ->
+            AbstractBlock.Settings
+                .copy(Blocks.SPRUCE_LEAVES)
+                .registryKey(key)
+        },
+        factory = { settings ->
+            ArisLeavesBlock(settings)
+        }
+    )
+
     // ========================================================
     // Общая регистрация блока + BlockItem
     // ========================================================

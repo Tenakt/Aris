@@ -1,0 +1,60 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "distance": "1"
+      },
+      "apply": {
+        "model": "aris:block/taiga_leaves"
+      }
+    },
+    {
+      "when": {
+        "distance": "2"
+      },
+      "apply": {
+        "model": "aris:block/taiga_leaves"
+      }
+    },
+    {
+      "when": {
+        "distance": "3"
+      },
+      "apply": {
+        "model": "aris:block/taiga_leaves"
+      }
+    },
+    {
+      "when": {
+        "distance": "4"
+      },
+      "apply": {
+        "model": "aris:block/taiga_leaves"
+      }
+    },
+    {
+      "when": {
+        "distance": "5"
+      },
+      "apply": {
+        "model": "aris:block/taiga_leaves"
+      }
+    },
+    {
+      "when": {
+        "distance": "6"
+      },
+      "apply": {
+        "model": "aris:block/taiga_leaves"
+      }
+    },
+    {
+      "when": {
+        "distance": "7"
+      },
+      "apply": {
+        "model": "aris:block/taiga_leaves"
+      }
+    }
+  ]
+}

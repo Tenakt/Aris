@@ -7,8 +7,10 @@ import net.minecraft.client.color.world.BiomeColors
 import net.minecraft.world.biome.GrassColors
 
 class ArisClient : ClientModInitializer {
+
 	override fun onInitializeClient() {
-		// В Minecraft 1.21.11 цвет регистрируется только для блока
+
+		// Цвет травы для Grass Slab
 		ColorProviderRegistry.BLOCK.register(
 			{ _, world, pos, _ ->
 				if (world != null && pos != null) {
@@ -18,6 +20,18 @@ class ArisClient : ClientModInitializer {
 				}
 			},
 			ModBlocks.GRASS_SLAB
+		)
+
+		// Цвет листвы для Aris Taiga Leaves
+		ColorProviderRegistry.BLOCK.register(
+			{ _, world, pos, _ ->
+				if (world != null && pos != null) {
+					BiomeColors.getFoliageColor(world, pos)
+				} else {
+					4764952
+				}
+			},
+			ModBlocks.TAIGA_LEAVES
 		)
 	}
 }

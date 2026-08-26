@@ -1,7 +1,9 @@
-package com.grindlesstudio.aris.worldgen
+package com.grindlesstudio.aris.worldgen.terrain
 
+import kotlin.math.cos
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.math.sin
 
 /**
  * Главный математический движок terrain Aris.
@@ -163,8 +165,8 @@ object ArisTerrainEngine {
          */
 
         val value =
-            kotlin.math.sin(nx) *
-                    kotlin.math.cos(nz)
+            sin(nx) *
+                    cos(nz)
 
 
         /*
@@ -217,8 +219,8 @@ object ArisTerrainEngine {
 
 
         val value =
-            kotlin.math.sin(nx * 1.7) *
-                    kotlin.math.cos(nz * 1.3)
+            sin(nx * 1.7) *
+                    cos(nz * 1.3)
 
 
         /*

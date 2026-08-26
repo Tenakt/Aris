@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "aris:block/taiga_leaves",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": 6396257
+      }
+    ]
+  }
+}

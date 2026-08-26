@@ -11,15 +11,21 @@
     },
     "dirt_provider": {
       "type": "minecraft:simple_state_provider",
-      "state": { "Name": "minecraft:dirt" }
+      "state": {
+        "Name": "minecraft:dirt"
+      }
     },
     "trunk_provider": {
       "type": "minecraft:simple_state_provider",
-      "state": { "Name": "minecraft:spruce_log" }
+      "state": {
+        "Name": "minecraft:spruce_log"
+      }
     },
     "foliage_provider": {
       "type": "minecraft:simple_state_provider",
-      "state": { "Name": "minecraft:spruce_leaves" }
+      "state": {
+        "Name": "aris:taiga_leaves"
+      }
     },
     "trunk_placer": {
       "type": "minecraft:giant_trunk_placer",
