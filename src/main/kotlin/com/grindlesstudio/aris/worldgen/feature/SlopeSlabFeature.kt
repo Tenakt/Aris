@@ -44,6 +44,7 @@ class SlopeSlabFeature(configCodec: Codec<DefaultFeatureConfig>) : Feature<Defau
                         state.isOf(Blocks.GRASS_BLOCK) -> ModBlocks.GRASS_SLAB.defaultState.with(SlabBlock.TYPE, SlabType.BOTTOM)
                         state.isOf(Blocks.DIRT) -> ModBlocks.DIRT_SLAB.defaultState.with(SlabBlock.TYPE, SlabType.BOTTOM)
                         state.isOf(Blocks.STONE) -> Blocks.STONE_SLAB.defaultState.with(SlabBlock.TYPE, SlabType.BOTTOM)
+                        state.isOf(Blocks.SAND) -> ModBlocks.SAND_SLAB.defaultState.with(SlabBlock.TYPE, SlabType.BOTTOM)
                         else -> null
                     }
 

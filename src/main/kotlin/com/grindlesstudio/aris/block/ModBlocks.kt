@@ -92,7 +92,7 @@ object ModBlocks {
                 .registryKey(key)
         },
         factory = { settings ->
-            ArisLeavesBlock(settings)
+            SlabBlock(settings)
         }
     )
 
