@@ -1,6 +1,5 @@
-package com.grindlesstudio.aris.fabric
+package com.grindlesstudio.aris
 
-import com.grindlesstudio.aris.Aris
 import net.fabricmc.api.ModInitializer
 
 class ArisFabric : ModInitializer {

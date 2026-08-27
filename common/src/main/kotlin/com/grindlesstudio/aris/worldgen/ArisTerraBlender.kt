@@ -1,6 +1,5 @@
 package com.grindlesstudio.aris.worldgen
 
-import com.grindlesstudio.aris.Aris
 import com.mojang.datafixers.util.Pair
 import net.minecraft.registry.Registry
 import net.minecraft.registry.RegistryKey

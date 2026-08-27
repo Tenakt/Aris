@@ -1,6 +1,5 @@
 package com.grindlesstudio.aris.worldgen.terrain
 
-import com.grindlesstudio.aris.Aris
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.block.BlockState

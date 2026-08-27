@@ -1,6 +1,5 @@
 package com.grindlesstudio.aris.worldgen
 
-import com.grindlesstudio.aris.Aris
 import com.grindlesstudio.aris.worldgen.biome.ArisBiomeSource
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry

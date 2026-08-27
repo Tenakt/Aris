@@ -1,6 +1,5 @@
 package com.grindlesstudio.aris.block
 
-import com.grindlesstudio.aris.Aris
 import net.minecraft.block.AbstractBlock
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
