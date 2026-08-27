@@ -1,0 +1,29 @@
+plugins {
+    id "fabric-loom" version "1.17-SNAPSHOT"
+}
+
+base {
+    archivesName = "${project.mod_id}-common"
+}
+
+repositories {
+    maven {
+        name = "Fabric"
+        url = "https://maven.fabricmc.net/"
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+
+    mappings loom.officialMojangMappings()
+
+    // Fabric Kotlin
+    modImplementation(
+            "net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}"
+    )
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
+}

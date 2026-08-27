@@ -1,0 +1,64 @@
+plugins {
+    id "fabric-loom" version "1.17-SNAPSHOT"
+}
+
+base {
+    archivesName = "${project.mod_id}-fabric"
+}
+
+dependencies {
+
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+
+    mappings loom.officialMojangMappings()
+
+    modImplementation(
+            "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    )
+
+    modImplementation(
+            "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+    )
+
+    modImplementation(
+            "net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}"
+    )
+
+    // =========================================================
+    // Knot Fabric
+    // =========================================================
+
+    modImplementation(
+            "com.daqem.knot:knot-fabric:${knot_version}"
+    )
+
+    // Common
+    implementation project(
+            path: ":common",
+            configuration: "namedElements"
+    )
+}
+
+loom {
+    runs {
+        client {
+            client()
+            name = "Fabric Client"
+
+            source project(":common").sourceSets.main
+            source sourceSets.main
+        }
+
+        server {
+            server()
+            name = "Fabric Server"
+
+            source project(":common").sourceSets.main
+            source sourceSets.main
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
+}
