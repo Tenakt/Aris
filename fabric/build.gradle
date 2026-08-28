@@ -24,18 +24,26 @@ dependencies {
             "net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}"
     )
 
-    // Knot Fabric
     modImplementation(
             "com.daqem.knot:knot-fabric:${knot_version}"
     )
 
-    // TerraBlender Fabric
+    // TerraBlender
     modImplementation(
-            "maven.modrinth:kkmrDlKT:${terrablender_fabric_id}"
+            "maven.modrinth:kkmrDlKT:chxo508B"
+    )
+
+    // NightConfig
+    modImplementation(
+            "com.electronwill.night-config:core:3.8.1"
+    )
+
+    modImplementation(
+            "com.electronwill.night-config:toml:3.8.1"
     )
 
     // Common
-    implementation project(
+    modImplementation project(
             path: ":common",
             configuration: "namedElements"
     )
@@ -63,4 +71,24 @@ loom {
 
 tasks.withType(JavaCompile).configureEach {
     options.release = 21
+}
+
+// =========================================================
+// Fabric mod metadata
+// =========================================================
+
+tasks.processResources {
+    inputs.properties(
+            "version": project.version,
+            "minecraft_version": project.minecraft_version,
+            "fabric_loader_version": project.fabric_loader_version
+    )
+
+    filesMatching("fabric.mod.json") {
+        expand(
+                "version": project.version,
+                "minecraft_version": project.minecraft_version,
+                "fabric_loader_version": project.fabric_loader_version
+        )
+    }
 }
