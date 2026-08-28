@@ -1,8 +1,9 @@
 package com.grindlesstudio.aris.worldgen
 
 import com.grindlesstudio.aris.worldgen.terrain.ArisChunkGenerator
-import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
+import net.minecraft.registry.Registries
+import com.grindlesstudio.aris.Aris
 
 object ModChunkGenerators {
 

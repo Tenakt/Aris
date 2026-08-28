@@ -17,6 +17,7 @@ import net.minecraft.util.math.Direction
 import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.BlockView
 import net.minecraft.world.WorldView
+import com.grindlesstudio.aris.Aris
 
 // ============================================================
 // Маленький камешек

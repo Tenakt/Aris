@@ -7,7 +7,13 @@ base {
 }
 
 dependencies {
+    // Common
     implementation project(":common")
+
+    // TerraBlender NeoForge
+    implementation(
+            "maven.modrinth:kkmrDlKT:${terrablender_neoforge_id}"
+    )
 }
 
 neoForge {

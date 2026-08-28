@@ -16,6 +16,7 @@ import net.minecraft.world.gen.chunk.VerticalBlockSample
 import net.minecraft.world.Heightmap
 import net.minecraft.world.gen.noise.NoiseConfig
 import java.util.concurrent.CompletableFuture
+import com.grindlesstudio.aris.Aris
 
 class ArisChunkGenerator(
     biomeSource: BiomeSource

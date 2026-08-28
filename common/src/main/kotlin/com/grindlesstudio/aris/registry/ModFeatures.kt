@@ -1,5 +1,6 @@
 package com.grindlesstudio.aris.registry
 
+import com.grindlesstudio.aris.Aris
 import com.grindlesstudio.aris.worldgen.feature.SlopeSlabFeature
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
