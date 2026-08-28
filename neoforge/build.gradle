@@ -14,6 +14,10 @@ dependencies {
     implementation(
             "maven.modrinth:kkmrDlKT:${terrablender_neoforge_id}"
     )
+    //Kotlin for Forge
+    implementation (
+            "maven.modrinth:ordsPcFz:WSKgpZoB"
+    )
 }
 
 neoForge {
