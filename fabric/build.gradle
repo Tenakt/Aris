@@ -41,12 +41,6 @@ dependencies {
     modImplementation(
             "com.electronwill.night-config:toml:3.8.1"
     )
-
-    // Common
-    modImplementation project(
-            path: ":common",
-            configuration: "namedElements"
-    )
 }
 
 loom {
