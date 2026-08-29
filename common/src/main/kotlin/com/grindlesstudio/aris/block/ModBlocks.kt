@@ -8,16 +8,16 @@ import net.minecraft.block.ShapeContext
 import net.minecraft.block.SlabBlock
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
-import net.minecraft.registry.Registries
-import net.minecraft.registry.Registry
-import net.minecraft.registry.RegistryKey
-import net.minecraft.registry.RegistryKeys
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.BlockView
 import net.minecraft.world.WorldView
 import com.grindlesstudio.aris.Aris
+import net.minecraft.registry.Registries
+import net.minecraft.registry.Registry
+import net.minecraft.registry.RegistryKey
+import net.minecraft.registry.RegistryKeys
 
 // ============================================================
 // Маленький камешек

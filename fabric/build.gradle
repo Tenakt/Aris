@@ -41,24 +41,31 @@ dependencies {
     modImplementation(
             "com.electronwill.night-config:toml:3.8.1"
     )
+
+    // Common
+    implementation project(
+            path: ":common",
+            configuration: "namedElements"
+    )
 }
 
 loom {
+    mods {
+        "${project.mod_id}" {
+            sourceSet sourceSets.main
+            sourceSet("main", ":common")
+        }
+    }
+
     runs {
         client {
             client()
             name = "Fabric Client"
-
-            source project(":common").sourceSets.main
-            source sourceSets.main
         }
 
         server {
             server()
             name = "Fabric Server"
-
-            source project(":common").sourceSets.main
-            source sourceSets.main
         }
     }
 }

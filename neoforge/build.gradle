@@ -14,6 +14,10 @@ dependencies {
     implementation(
             "maven.modrinth:kkmrDlKT:${terrablender_neoforge_id}"
     )
+
+    implementation(
+            "com.daqem.knot:knot-neoforge:${knot_version}"
+    )
     //Kotlin for Forge
     implementation (
             "maven.modrinth:ordsPcFz:WSKgpZoB"
@@ -26,9 +30,7 @@ neoForge {
     runs {
         client {
             client()
-            gameDirectory = project.file(
-                    "runs/client"
-            )
+            gameDirectory = project.file("runs/client")
 
             systemProperty(
                     "neoforge.enabledGameTestNamespaces",
@@ -38,9 +40,7 @@ neoForge {
 
         server {
             server()
-            gameDirectory = project.file(
-                    "runs/server"
-            )
+            gameDirectory = project.file("runs/server")
 
             systemProperty(
                     "neoforge.enabledGameTestNamespaces",
@@ -52,6 +52,7 @@ neoForge {
     mods {
         "${mod_id}" {
             sourceSet sourceSets.main
+            sourceSet project(":common").sourceSets.main
         }
     }
 }
