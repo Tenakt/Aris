@@ -2,26 +2,10 @@ plugins {
     id "net.neoforged.moddev" version "2.0.107"
 }
 
+evaluationDependsOn(":common")
+
 base {
     archivesName = "${project.mod_id}-neoforge"
-}
-
-dependencies {
-    // Common
-    implementation project(":common")
-
-    // TerraBlender NeoForge
-    implementation(
-            "maven.modrinth:kkmrDlKT:${terrablender_neoforge_id}"
-    )
-
-    implementation(
-            "com.daqem.knot:knot-neoforge:${knot_version}"
-    )
-    //Kotlin for Forge
-    implementation (
-            "maven.modrinth:ordsPcFz:WSKgpZoB"
-    )
 }
 
 neoForge {
@@ -30,6 +14,7 @@ neoForge {
     runs {
         client {
             client()
+
             gameDirectory = project.file("runs/client")
 
             systemProperty(
@@ -40,6 +25,7 @@ neoForge {
 
         server {
             server()
+
             gameDirectory = project.file("runs/server")
 
             systemProperty(
@@ -50,13 +36,47 @@ neoForge {
     }
 
     mods {
-        "${mod_id}" {
+        "${project.mod_id}" {
             sourceSet sourceSets.main
             sourceSet project(":common").sourceSets.main
         }
     }
 }
 
+dependencies {
+    implementation project(":common")
+
+    implementation(
+            "maven.modrinth:kkmrDlKT:${terrablender_neoforge_id}"
+    )
+
+    implementation(
+            "com.daqem.knot:knot-neoforge:${knot_version}"
+    )
+
+    implementation(
+            "maven.modrinth:ordsPcFz:WSKgpZoB"
+    )
+}
+
 tasks.withType(JavaCompile).configureEach {
     options.release = 21
+}
+
+tasks.processResources {
+    inputs.properties(
+            "version": project.version,
+            "mod_id": project.mod_id,
+            "mod_version": project.mod_version,
+            "minecraft_version": project.minecraft_version
+    )
+
+    filesMatching("META-INF/neoforge.mods.toml") {
+        expand(
+                "version": project.version,
+                "mod_id": project.mod_id,
+                "mod_version": project.mod_version,
+                "minecraft_version": project.minecraft_version
+        )
+    }
 }
