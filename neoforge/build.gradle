@@ -91,18 +91,9 @@ dependencies {
             "maven.modrinth:kkmrDlKT:${terrablender_neoforge_id}"
     )
 
-    // =====================================================
-    // Formations 1.0.4
-    // NeoForge 1.21.11
-    // =====================================================
-
+    // Moog's Structure Lib
     implementation(
-            "maven.modrinth:tPe4xnPd:j3V7Jnsb"
-    )
-
-    // SuperMartijn642's Core Lib
-    implementation(
-            "maven.modrinth:rOUBggPv:y9DXgWrM"
+            "maven.modrinth:1oUDhxuy:5MelBDO6"
     )
 
     // Existing dependency from your project

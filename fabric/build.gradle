@@ -72,13 +72,9 @@ dependencies {
             "maven.modrinth:kkmrDlKT:${terrablender_fabric_id}"
     )
 
-    // =====================================================
-    // Formations 1.0.4
-    // Fabric 1.21.11
-    // =====================================================
-
+    // Moog's Structure Lib
     modImplementation(
-            "maven.modrinth:tPe4xnPd:LtVqLEE5"
+            "maven.modrinth:1oUDhxuy:2idiRwR3"
     )
 
     // =====================================================
