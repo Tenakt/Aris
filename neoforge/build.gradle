@@ -102,7 +102,7 @@ dependencies {
 
     // SuperMartijn642's Core Lib
     implementation(
-            "maven.modrinth:8K9K3T5W:PNGWiGzI"
+            "maven.modrinth:rOUBggPv:y9DXgWrM"
     )
 
     // Existing dependency from your project
