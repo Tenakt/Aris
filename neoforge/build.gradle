@@ -46,14 +46,66 @@ neoForge {
 dependencies {
     implementation project(":common")
 
+    // =====================================================
+    // Architectury API 19.0.1
+    // Minecraft 1.21.11 / NeoForge
+    // =====================================================
+
+    implementation(
+            "maven.modrinth:lhGA9TYQ:EvL9NK2R"
+    )
+
+    // =====================================================
+    // DAQEM
+    // =====================================================
+
+    // UI Lib 19.1.0
+    // NeoForge 1.21.11
+    implementation(
+            "curse.maven:ui-933200:7650066"
+    )
+
+    // YAML Config 19.1.2
+    // NeoForge 1.21.11
+    implementation(
+            "curse.maven:yaml-config-1128669:8188614"
+    )
+
+    // Arc Lib 19.1.1
+    // NeoForge 1.21.11
+    implementation(
+            "curse.maven:arc-883593:7654923"
+    )
+
+    // Item Restrictions 19.1.0
+    // NeoForge 1.21.11
+    implementation(
+            "curse.maven:item-restrictions-887774:7650343"
+    )
+
+    // =====================================================
+    // TerraBlender
+    // =====================================================
+
     implementation(
             "maven.modrinth:kkmrDlKT:${terrablender_neoforge_id}"
     )
 
+    // =====================================================
+    // Formations 1.0.4
+    // NeoForge 1.21.11
+    // =====================================================
+
     implementation(
-            "com.daqem.knot:knot-neoforge:${knot_version}"
+            "maven.modrinth:tPe4xnPd:j3V7Jnsb"
     )
 
+    // SuperMartijn642's Core Lib
+    implementation(
+            "maven.modrinth:8K9K3T5W:PNGWiGzI"
+    )
+
+    // Existing dependency from your project
     implementation(
             "maven.modrinth:ordsPcFz:WSKgpZoB"
     )

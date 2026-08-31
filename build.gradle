@@ -9,30 +9,45 @@ allprojects {
 	repositories {
 		mavenCentral()
 
+		// Modrinth
 		maven {
 			name = "Modrinth"
 			url = "https://api.modrinth.com/maven"
 		}
 
+		// CurseForge
+		maven {
+			name = "CurseMaven"
+			url = "https://www.cursemaven.com"
+		}
+
+		// DAQEM
 		maven {
 			name = "DAQEM"
 			url = "https://maven.daqem.com/releases"
 		}
 
+		// Fabric
 		maven {
 			name = "Fabric"
 			url = "https://maven.fabricmc.net/"
 		}
 
+		// NeoForge
 		maven {
 			name = "NeoForge"
 			url = "https://maven.neoforged.net/releases/"
+		}
+
+		// Architectury
+		maven {
+			name = "Architectury"
+			url = "https://maven.architectury.dev/"
 		}
 	}
 }
 
 subprojects {
-
 	apply plugin: "org.jetbrains.kotlin.jvm"
 
 	java {

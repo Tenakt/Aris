@@ -7,10 +7,13 @@ base {
 }
 
 dependencies {
-
     minecraft "com.mojang:minecraft:${minecraft_version}"
 
     mappings "net.fabricmc:yarn:${yarn_mappings}:v2"
+
+    // =====================================================
+    // Fabric
+    // =====================================================
 
     modImplementation(
             "net.fabricmc:fabric-loader:${fabric_loader_version}"
@@ -24,16 +27,64 @@ dependencies {
             "net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}"
     )
 
+    // =====================================================
+    // Architectury API 19.0.1
+    // Minecraft 1.21.11 / Fabric
+    // =====================================================
+
     modImplementation(
-            "com.daqem.knot:knot-fabric:${knot_version}"
+            "maven.modrinth:lhGA9TYQ:uNdfrcQ8"
     )
 
+    // =====================================================
+    // DAQEM
+    // =====================================================
+
+    // UI Lib 19.1.0
+    // Fabric 1.21.11
+    modImplementation(
+            "curse.maven:ui-933200:7650065"
+    )
+
+    // YAML Config 19.1.2
+    // Fabric 1.21.11
+    modImplementation(
+            "curse.maven:yaml-config-1128669:8188613"
+    )
+
+    // Arc Lib 19.1.1
+    // Fabric 1.21.11
+    modImplementation(
+            "curse.maven:arc-883593:7654922"
+    )
+
+    // Item Restrictions 19.1.0
+    // Fabric 1.21.11
+    modImplementation(
+            "curse.maven:item-restrictions-887774:7650342"
+    )
+
+    // =====================================================
     // TerraBlender
+    // =====================================================
+
     modImplementation(
-            "maven.modrinth:kkmrDlKT:chxo508B"
+            "maven.modrinth:kkmrDlKT:${terrablender_fabric_id}"
     )
 
+    // =====================================================
+    // Formations 1.0.4
+    // Fabric 1.21.11
+    // =====================================================
+
+    modImplementation(
+            "maven.modrinth:tPe4xnPd:LtVqLEE5"
+    )
+
+    // =====================================================
     // NightConfig
+    // =====================================================
+
     modImplementation(
             "com.electronwill.night-config:core:3.8.1"
     )
@@ -42,7 +93,10 @@ dependencies {
             "com.electronwill.night-config:toml:3.8.1"
     )
 
+    // =====================================================
     // Common
+    // =====================================================
+
     implementation project(
             path: ":common",
             configuration: "namedElements"
@@ -73,10 +127,6 @@ loom {
 tasks.withType(JavaCompile).configureEach {
     options.release = 21
 }
-
-// =========================================================
-// Fabric mod metadata
-// =========================================================
 
 tasks.processResources {
     inputs.properties(
