@@ -1,17 +1,16 @@
 package com.grindlesstudio.aris.worldgen
 
-import net.minecraft.block.Blocks
-import net.minecraft.world.gen.surfacebuilder.MaterialRules
+import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.levelgen.SurfaceRules
 
 object ArisSurfaceRules {
-    private val STONE = MaterialRules.block(Blocks.STONE.defaultState)
+    private val STONE = SurfaceRules.state(Blocks.STONE.defaultBlockState())
 
-    fun makeRules(): MaterialRules.MaterialRule {
-        // Условие steep() автоматически проверяет угол наклона блоков
-        val isSteep = MaterialRules.condition(MaterialRules.steepSlope(), STONE)
+    fun makeRules(): SurfaceRules.RuleSource {
+        val isSteep = SurfaceRules.steep()
 
-        return MaterialRules.sequence(
-            isSteep
+        return SurfaceRules.sequence(
+            SurfaceRules.ifTrue(isSteep, STONE)
         )
     }
 }

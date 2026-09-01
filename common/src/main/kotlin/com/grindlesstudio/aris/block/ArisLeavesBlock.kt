@@ -1,46 +1,45 @@
 package com.grindlesstudio.aris.block
 
 import com.mojang.serialization.MapCodec
-import net.minecraft.block.AbstractBlock
-import net.minecraft.block.BlockState
-import net.minecraft.block.LeavesBlock
-import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.Direction
-import net.minecraft.util.math.random.Random
-import net.minecraft.world.World
+import net.minecraft.core.BlockPos
+import net.minecraft.core.Direction
+import net.minecraft.util.RandomSource
+import net.minecraft.world.level.Level
+import net.minecraft.world.level.block.LeavesBlock
+import net.minecraft.world.level.block.state.BlockState
 
 class ArisLeavesBlock(
-    settings: AbstractBlock.Settings
+    properties: Properties
 ) : LeavesBlock(
     0.02f,
-    settings
+    properties
 ) {
 
-    override fun getCodec(): MapCodec<out LeavesBlock> {
+    override fun codec(): MapCodec<out LeavesBlock> {
         return MapCodec.unit(this)
     }
 
-    override fun spawnLeafParticle(
-        world: World,
+    override fun spawnFallingLeavesParticle(
+        level: Level,
         pos: BlockPos,
-        random: Random
+        random: RandomSource
     ) {
         // Ничего не делаем.
         // Частицы для нашей листвы пока отключены.
     }
 
-    override fun isSideInvisible(
+    override fun skipRendering(
         state: BlockState,
-        stateFrom: BlockState,
+        adjacentBlockState: BlockState,
         direction: Direction
     ): Boolean {
-        if (stateFrom.isOf(this)) {
+        if (adjacentBlockState.`is`(this)) {
             return true
         }
 
-        return super.isSideInvisible(
+        return super.skipRendering(
             state,
-            stateFrom,
+            adjacentBlockState,
             direction
         )
     }

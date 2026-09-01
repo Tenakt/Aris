@@ -1,26 +1,22 @@
 package com.grindlesstudio.aris
 
-import com.grindlesstudio.aris.registry.ModFeatures
-import com.grindlesstudio.aris.worldgen.ModBiomeSources
-import com.grindlesstudio.aris.worldgen.ModChunkGenerators
-import net.minecraft.util.Identifier
-import org.slf4j.LoggerFactory
+import com.mojang.logging.LogUtils
+import net.minecraft.resources.Identifier
+import org.slf4j.Logger
 
 object Aris {
-    const val MOD_ID = "aris"
 
-    val LOGGER = LoggerFactory.getLogger(MOD_ID)
+    const val MOD_ID = "aris"
+    const val MOD_NAME = "Aris"
+    const val MOD_VERSION = "1.0.0"
+
+    val LOGGER: Logger = LogUtils.getLogger()
 
     fun id(path: String): Identifier {
-        return Identifier.of(MOD_ID, path)
+        return Identifier.fromNamespaceAndPath(MOD_ID, path)
     }
 
     fun initialize() {
-        LOGGER.info("Aris initialized")
-
-        // Регистрация worldgen
-        ModFeatures.registerFeatures()
-        ModChunkGenerators.register()
-        ModBiomeSources.register()
+        LOGGER.info("$MOD_NAME $MOD_VERSION initialized")
     }
 }

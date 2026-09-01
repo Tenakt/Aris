@@ -1,17 +1,19 @@
 package com.grindlesstudio.aris.worldgen
 
-import com.grindlesstudio.aris.worldgen.terrain.ArisChunkGenerator
-import net.minecraft.registry.Registry
-import net.minecraft.registry.Registries
 import com.grindlesstudio.aris.Aris
+import com.grindlesstudio.aris.worldgen.terrain.ArisChunkGenerator
+import net.minecraft.core.Registry
+import net.minecraft.core.registries.BuiltInRegistries
 
 object ModChunkGenerators {
 
-    fun register() {
+    val ARIS_CODEC = ArisChunkGenerator.CODEC
+
+    fun registerFabric() {
         Registry.register(
-            Registries.CHUNK_GENERATOR,
+            BuiltInRegistries.CHUNK_GENERATOR,
             Aris.id("aris"),
-            ArisChunkGenerator.CODEC
+            ARIS_CODEC
         )
 
         Aris.LOGGER.info("Aris chunk generator registered")

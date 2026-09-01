@@ -4,17 +4,18 @@ import com.grindlesstudio.aris.worldgen.terrain.ArisRegion
 import com.grindlesstudio.aris.worldgen.terrain.ArisTerrain
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
-import net.minecraft.registry.entry.RegistryEntry
-import net.minecraft.world.biome.Biome
-import net.minecraft.world.biome.source.BiomeSource
-import net.minecraft.world.biome.source.util.MultiNoiseUtil
+import net.minecraft.core.Holder
+import net.minecraft.world.level.biome.Biome
+import net.minecraft.world.level.biome.BiomeSource
+import net.minecraft.world.level.biome.Biomes
+import net.minecraft.world.level.biome.Climate
 import java.util.stream.Stream
 
 class ArisBiomeSource(
-    private val ocean: RegistryEntry<Biome>,
-    private val plains: RegistryEntry<Biome>,
-    private val taiga: RegistryEntry<Biome>,
-    private val mountains: RegistryEntry<Biome>
+    private val ocean: Holder<Biome>,
+    private val plains: Holder<Biome>,
+    private val taiga: Holder<Biome>,
+    private val mountains: Holder<Biome>
 ) : BiomeSource() {
 
     companion object {
@@ -24,25 +25,25 @@ class ArisBiomeSource(
 
                 instance.group(
 
-                    Biome.REGISTRY_CODEC
+                    Biome.CODEC
                         .fieldOf("ocean")
                         .forGetter { source ->
                             source.ocean
                         },
 
-                    Biome.REGISTRY_CODEC
+                    Biome.CODEC
                         .fieldOf("plains")
                         .forGetter { source ->
                             source.plains
                         },
 
-                    Biome.REGISTRY_CODEC
+                    Biome.CODEC
                         .fieldOf("taiga")
                         .forGetter { source ->
                             source.taiga
                         },
 
-                    Biome.REGISTRY_CODEC
+                    Biome.CODEC
                         .fieldOf("mountains")
                         .forGetter { source ->
                             source.mountains
@@ -55,22 +56,23 @@ class ArisBiomeSource(
             }
     }
 
-    override fun getCodec(): MapCodec<out BiomeSource> {
+    override fun codec(): MapCodec<out BiomeSource> {
         return CODEC
     }
 
-    override fun getBiome(
+    override fun getNoiseBiome(
         x: Int,
         y: Int,
         z: Int,
-        noise: MultiNoiseUtil.MultiNoiseSampler
-    ): RegistryEntry<Biome> {
+        noise: Climate.Sampler
+    ): Holder<Biome> {
 
-        val region = ArisTerrain.getRegion(
-            x,
-            z,
-            0L
-        )
+        val region =
+            ArisTerrain.getRegion(
+                x,
+                z,
+                0L
+            )
 
         return when (region) {
 
@@ -88,7 +90,7 @@ class ArisBiomeSource(
         }
     }
 
-    override fun biomeStream(): Stream<RegistryEntry<Biome>> {
+    override fun collectPossibleBiomes(): Stream<Holder<Biome>> {
 
         return Stream.of(
             ocean,

@@ -2,19 +2,25 @@ package com.grindlesstudio.aris.registry
 
 import com.grindlesstudio.aris.Aris
 import com.grindlesstudio.aris.worldgen.feature.SlopeSlabFeature
-import net.minecraft.registry.Registries
-import net.minecraft.registry.Registry
-import net.minecraft.world.gen.feature.DefaultFeatureConfig
-import net.minecraft.world.gen.feature.Feature
+import net.minecraft.core.Registry
+import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.world.level.levelgen.feature.Feature
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration
 
 object ModFeatures {
-    val SLOPE_SLAB: Feature<DefaultFeatureConfig> = Registry.register(
-        Registries.FEATURE,
-        Aris.id("slope_slab"),
-        SlopeSlabFeature(DefaultFeatureConfig.CODEC)
-    )
 
-    fun registerFeatures() {
-        Aris.LOGGER.info("Registering Mod Features for " + Aris.MOD_ID)
+    val SLOPE_SLAB: Feature<NoneFeatureConfiguration> =
+        SlopeSlabFeature(
+            NoneFeatureConfiguration.CODEC
+        )
+
+    fun registerFabric() {
+        Registry.register(
+            BuiltInRegistries.FEATURE,
+            Aris.id("slope_slab"),
+            SLOPE_SLAB
+        )
+
+        Aris.LOGGER.info("Aris features registered")
     }
 }

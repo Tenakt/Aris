@@ -2,21 +2,20 @@ package com.grindlesstudio.aris.worldgen
 
 import com.grindlesstudio.aris.Aris
 import com.grindlesstudio.aris.worldgen.biome.ArisBiomeSource
-import net.minecraft.registry.Registries
-import net.minecraft.registry.Registry
+import net.minecraft.core.Registry
+import net.minecraft.core.registries.BuiltInRegistries
 
 object ModBiomeSources {
 
-    fun register() {
+    val ARIS_CODEC = ArisBiomeSource.CODEC
 
+    fun registerFabric() {
         Registry.register(
-            Registries.BIOME_SOURCE,
+            BuiltInRegistries.BIOME_SOURCE,
             Aris.id("aris"),
-            ArisBiomeSource.CODEC
+            ARIS_CODEC
         )
 
-        Aris.LOGGER.info(
-            "Aris biome source registered"
-        )
+        Aris.LOGGER.info("Aris biome source registered")
     }
 }
