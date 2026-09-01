@@ -1,18 +1,18 @@
-package com.grindlesstudio.aris.mixin
+package com.grindlesstudio.aris.mixins
 
-import net.minecraft.block.BlockState
-import net.minecraft.block.LeavesBlock
-import net.minecraft.block.ShapeContext
-import net.minecraft.util.math.BlockPos
-import net.minecraft.util.shape.VoxelShape
-import net.minecraft.util.shape.VoxelShapes
-import net.minecraft.world.BlockView
+import net.minecraft.core.BlockPos
+import net.minecraft.world.level.BlockGetter
+import net.minecraft.world.level.block.LeavesBlock
+import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.phys.shapes.CollisionContext
+import net.minecraft.world.phys.shapes.VoxelShape
+import net.minecraft.world.phys.shapes.Shapes
 import org.spongepowered.asm.mixin.Mixin
 import org.spongepowered.asm.mixin.injection.At
 import org.spongepowered.asm.mixin.injection.Inject
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 
-@Mixin(net.minecraft.block.AbstractBlock::class)
+@Mixin(net.minecraft.world.level.block.Block::class)
 abstract class LeavesBlockMixin {
 
     @Inject(
@@ -22,13 +22,13 @@ abstract class LeavesBlockMixin {
     )
     private fun disableLeafCollision(
         state: BlockState,
-        world: BlockView,
+        world: BlockGetter,
         pos: BlockPos,
-        context: ShapeContext,
+        context: CollisionContext,
         cir: CallbackInfoReturnable<VoxelShape>
     ) {
         if (state.block is LeavesBlock) {
-            cir.returnValue = VoxelShapes.empty()
+            cir.returnValue = Shapes.empty()
         }
     }
 }

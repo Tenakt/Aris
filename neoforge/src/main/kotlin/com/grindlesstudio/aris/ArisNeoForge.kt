@@ -62,27 +62,27 @@ class ArisNeoForge(modBus: IEventBus) {
 
             registry.register(
                 Aris.id("dirt_slab"),
-                ModBlocks.DIRT_SLAB.asItem()
+                ModBlocks.DIRT_SLAB_ITEM
             )
 
             registry.register(
                 Aris.id("grass_slab"),
-                ModBlocks.GRASS_SLAB.asItem()
+                ModBlocks.GRASS_SLAB_ITEM
             )
 
             registry.register(
                 Aris.id("sand_slab"),
-                ModBlocks.SAND_SLAB.asItem()
+                ModBlocks.SAND_SLAB_ITEM
             )
 
             registry.register(
                 Aris.id("pebble"),
-                ModBlocks.PEBBLE.asItem()
+                ModBlocks.PEBBLE_ITEM
             )
 
             registry.register(
                 Aris.id("taiga_leaves"),
-                ModBlocks.TAIGA_LEAVES.asItem()
+                ModBlocks.TAIGA_LEAVES_ITEM
             )
         }
 
@@ -96,11 +96,6 @@ class ArisNeoForge(modBus: IEventBus) {
                 Aris.id("slope_slab"),
                 ModFeatures.SLOPE_SLAB
             )
-
-            registry.register(
-                Aris.id("small_stream"),
-                ModFeatures.SMALL_STREAM
-            )
         }
 
         // ============================================================
@@ -111,7 +106,7 @@ class ArisNeoForge(modBus: IEventBus) {
 
             registry.register(
                 Aris.id("aris"),
-                ModBiomeSources.ARIS
+                ModBiomeSources.ARIS_CODEC
             )
         }
 
@@ -123,7 +118,7 @@ class ArisNeoForge(modBus: IEventBus) {
 
             registry.register(
                 Aris.id("aris"),
-                ModChunkGenerators.ARIS
+                ModChunkGenerators.ARIS_CODEC
             )
         }
     }

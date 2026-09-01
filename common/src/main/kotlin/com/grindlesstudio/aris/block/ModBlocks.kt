@@ -3,7 +3,6 @@ package com.grindlesstudio.aris.block
 import com.grindlesstudio.aris.Aris
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
-import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.resources.ResourceKey
 import net.minecraft.world.item.BlockItem
@@ -17,10 +16,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.VoxelShape
-
-// ============================================================
-// Маленький камешек
-// ============================================================
 
 class PebbleBlock(
     properties: BlockBehaviour.Properties
@@ -63,16 +58,7 @@ class PebbleBlock(
     }
 }
 
-
-// ============================================================
-// Регистрация блоков Aris
-// ============================================================
-
 object ModBlocks {
-
-    // --------------------------------------------------------
-    // Keys
-    // --------------------------------------------------------
 
     val DIRT_SLAB_KEY: ResourceKey<Block> =
         ResourceKey.create(
@@ -134,11 +120,6 @@ object ModBlocks {
             Aris.id("taiga_leaves")
         )
 
-
-    // --------------------------------------------------------
-    // Blocks
-    // --------------------------------------------------------
-
     val DIRT_SLAB: Block =
         SlabBlock(
             BlockBehaviour.Properties
@@ -177,11 +158,6 @@ object ModBlocks {
                 .setId(TAIGA_LEAVES_KEY)
         )
 
-
-    // --------------------------------------------------------
-    // Items
-    // --------------------------------------------------------
-
     val DIRT_SLAB_ITEM: Item =
         BlockItem(
             DIRT_SLAB,
@@ -216,75 +192,4 @@ object ModBlocks {
             Item.Properties()
                 .setId(TAIGA_LEAVES_ITEM_KEY)
         )
-
-
-    // ========================================================
-    // Fabric / direct registry registration
-    // ========================================================
-
-    fun registerFabric() {
-
-        Registry.register(
-            BuiltInRegistries.BLOCK,
-            Aris.id("dirt_slab"),
-            DIRT_SLAB
-        )
-
-        Registry.register(
-            BuiltInRegistries.BLOCK,
-            Aris.id("grass_slab"),
-            GRASS_SLAB
-        )
-
-        Registry.register(
-            BuiltInRegistries.BLOCK,
-            Aris.id("sand_slab"),
-            SAND_SLAB
-        )
-
-        Registry.register(
-            BuiltInRegistries.BLOCK,
-            Aris.id("pebble"),
-            PEBBLE
-        )
-
-        Registry.register(
-            BuiltInRegistries.BLOCK,
-            Aris.id("taiga_leaves"),
-            TAIGA_LEAVES
-        )
-
-
-        Registry.register(
-            BuiltInRegistries.ITEM,
-            Aris.id("dirt_slab"),
-            DIRT_SLAB_ITEM
-        )
-
-        Registry.register(
-            BuiltInRegistries.ITEM,
-            Aris.id("grass_slab"),
-            GRASS_SLAB_ITEM
-        )
-
-        Registry.register(
-            BuiltInRegistries.ITEM,
-            Aris.id("sand_slab"),
-            SAND_SLAB_ITEM
-        )
-
-        Registry.register(
-            BuiltInRegistries.ITEM,
-            Aris.id("pebble"),
-            PEBBLE_ITEM
-        )
-
-        Registry.register(
-            BuiltInRegistries.ITEM,
-            Aris.id("taiga_leaves"),
-            TAIGA_LEAVES_ITEM
-        )
-
-        Aris.LOGGER.info("Aris blocks and items registered")
-    }
 }
