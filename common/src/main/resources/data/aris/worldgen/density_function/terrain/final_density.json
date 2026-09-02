@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:sub",
+  "argument1": "aris:terrain/terrain_height",
+  "argument2": {
+    "type": "minecraft:y_clamped_gradient",
+    "from_y": -352,
+    "to_y": 672,
+    "from_value": -352.0,
+    "to_value": 672.0
+  }
+}

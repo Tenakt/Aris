@@ -73,9 +73,9 @@ dependencies {
     )
 
     // YetAnotherConfigLib (YACL)
-    modImplementation(
-            "maven.modrinth:1eAoo2KR:pHWDw3Vc"
-    )
+//    modImplementation(
+//            "maven.modrinth:1eAoo2KR:pHWDw3Vc"
+//    )
 
     // =====================================================
     // NightConfig

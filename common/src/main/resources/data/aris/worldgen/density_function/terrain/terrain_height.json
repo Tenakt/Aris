@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:add",
+  "argument1": "aris:terrain/land_height",
+  "argument2": {
+    "type": "minecraft:add",
+    "argument1": "aris:terrain/mountain_height",
+    "argument2": {
+      "type": "minecraft:mul",
+      "argument1": "aris:terrain/detail",
+      "argument2": 14.0
+    }
+  }
+}
