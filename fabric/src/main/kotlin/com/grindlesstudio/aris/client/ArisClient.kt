@@ -3,8 +3,8 @@ package com.grindlesstudio.aris.client
 import com.grindlesstudio.aris.block.ModBlocks
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry
-import net.minecraft.client.color.world.BiomeColors
-import net.minecraft.world.biome.GrassColors
+import net.minecraft.client.renderer.BiomeColors
+import net.minecraft.world.level.GrassColor
 
 class ArisClient : ClientModInitializer {
 
@@ -12,11 +12,11 @@ class ArisClient : ClientModInitializer {
 
 		// Цвет травы для Grass Slab
 		ColorProviderRegistry.BLOCK.register(
-			{ _, world, pos, _ ->
-				if (world != null && pos != null) {
-					BiomeColors.getGrassColor(world, pos)
+			{ _, level, pos, _ ->
+				if (level != null && pos != null) {
+					BiomeColors.getAverageGrassColor(level, pos)
 				} else {
-					GrassColors.getDefaultColor()
+					GrassColor.getDefaultColor()
 				}
 			},
 			ModBlocks.GRASS_SLAB
@@ -24,9 +24,9 @@ class ArisClient : ClientModInitializer {
 
 		// Цвет листвы для Aris Taiga Leaves
 		ColorProviderRegistry.BLOCK.register(
-			{ _, world, pos, _ ->
-				if (world != null && pos != null) {
-					BiomeColors.getFoliageColor(world, pos)
+			{ _, level, pos, _ ->
+				if (level != null && pos != null) {
+					BiomeColors.getAverageFoliageColor(level, pos)
 				} else {
 					4764952
 				}

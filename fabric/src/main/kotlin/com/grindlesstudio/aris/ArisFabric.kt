@@ -1,6 +1,5 @@
 package com.grindlesstudio.aris
 
-import com.grindlesstudio.aris.block.ModBlocks
 import com.grindlesstudio.aris.registry.ModFeatures
 import com.grindlesstudio.aris.worldgen.ModBiomeSources
 import com.grindlesstudio.aris.worldgen.ModChunkGenerators
@@ -11,12 +10,6 @@ class ArisFabric : ModInitializer {
     override fun onInitialize() {
 
         Aris.initialize()
-
-        // ----------------------------------------------------
-        // Blocks + Items
-        // ----------------------------------------------------
-
-        ModBlocks.registerFabric()
 
         // ----------------------------------------------------
         // Features
