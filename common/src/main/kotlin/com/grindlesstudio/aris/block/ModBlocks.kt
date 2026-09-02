@@ -3,6 +3,7 @@ package com.grindlesstudio.aris.block
 import com.grindlesstudio.aris.Aris
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
+import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.resources.ResourceKey
 import net.minecraft.world.item.BlockItem
@@ -16,6 +17,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.VoxelShape
+
 
 class PebbleBlock(
     properties: BlockBehaviour.Properties
@@ -38,7 +40,6 @@ class PebbleBlock(
         pos: BlockPos,
         context: CollisionContext
     ): VoxelShape {
-
         val baseShape = Block.box(
             4.8,
             0.0,
@@ -57,6 +58,7 @@ class PebbleBlock(
         )
     }
 }
+
 
 object ModBlocks {
 
@@ -90,6 +92,7 @@ object ModBlocks {
             Aris.id("taiga_leaves")
         )
 
+
     val DIRT_SLAB_ITEM_KEY: ResourceKey<Item> =
         ResourceKey.create(
             BuiltInRegistries.ITEM.key(),
@@ -119,6 +122,7 @@ object ModBlocks {
             BuiltInRegistries.ITEM.key(),
             Aris.id("taiga_leaves")
         )
+
 
     val DIRT_SLAB: Block =
         SlabBlock(
@@ -158,6 +162,7 @@ object ModBlocks {
                 .setId(TAIGA_LEAVES_KEY)
         )
 
+
     val DIRT_SLAB_ITEM: Item =
         BlockItem(
             DIRT_SLAB,
@@ -192,4 +197,70 @@ object ModBlocks {
             Item.Properties()
                 .setId(TAIGA_LEAVES_ITEM_KEY)
         )
+
+
+    fun register() {
+        Registry.register(
+            BuiltInRegistries.BLOCK,
+            DIRT_SLAB_KEY,
+            DIRT_SLAB
+        )
+
+        Registry.register(
+            BuiltInRegistries.BLOCK,
+            GRASS_SLAB_KEY,
+            GRASS_SLAB
+        )
+
+        Registry.register(
+            BuiltInRegistries.BLOCK,
+            SAND_SLAB_KEY,
+            SAND_SLAB
+        )
+
+        Registry.register(
+            BuiltInRegistries.BLOCK,
+            PEBBLE_KEY,
+            PEBBLE
+        )
+
+        Registry.register(
+            BuiltInRegistries.BLOCK,
+            TAIGA_LEAVES_KEY,
+            TAIGA_LEAVES
+        )
+
+
+        Registry.register(
+            BuiltInRegistries.ITEM,
+            DIRT_SLAB_ITEM_KEY,
+            DIRT_SLAB_ITEM
+        )
+
+        Registry.register(
+            BuiltInRegistries.ITEM,
+            GRASS_SLAB_ITEM_KEY,
+            GRASS_SLAB_ITEM
+        )
+
+        Registry.register(
+            BuiltInRegistries.ITEM,
+            SAND_SLAB_ITEM_KEY,
+            SAND_SLAB_ITEM
+        )
+
+        Registry.register(
+            BuiltInRegistries.ITEM,
+            PEBBLE_ITEM_KEY,
+            PEBBLE_ITEM
+        )
+
+        Registry.register(
+            BuiltInRegistries.ITEM,
+            TAIGA_LEAVES_ITEM_KEY,
+            TAIGA_LEAVES_ITEM
+        )
+
+        Aris.LOGGER.info("Aris blocks and block items registered")
+    }
 }
