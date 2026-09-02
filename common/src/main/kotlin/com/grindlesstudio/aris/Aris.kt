@@ -1,6 +1,5 @@
 package com.grindlesstudio.aris
 
-import com.grindlesstudio.aris.block.ModBlocks
 import com.mojang.logging.LogUtils
 import net.minecraft.resources.Identifier
 import org.slf4j.Logger
@@ -18,8 +17,6 @@ object Aris {
     }
 
     fun initialize() {
-        ModBlocks.register()
-
         LOGGER.info("$MOD_NAME $MOD_VERSION initialized")
     }
 }

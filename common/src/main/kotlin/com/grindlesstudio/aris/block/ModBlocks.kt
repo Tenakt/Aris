@@ -40,6 +40,7 @@ class PebbleBlock(
         pos: BlockPos,
         context: CollisionContext
     ): VoxelShape {
+
         val baseShape = Block.box(
             4.8,
             0.0,
@@ -61,6 +62,10 @@ class PebbleBlock(
 
 
 object ModBlocks {
+
+    // ============================================================
+    // BLOCK KEYS
+    // ============================================================
 
     val DIRT_SLAB_KEY: ResourceKey<Block> =
         ResourceKey.create(
@@ -93,6 +98,10 @@ object ModBlocks {
         )
 
 
+    // ============================================================
+    // ITEM KEYS
+    // ============================================================
+
     val DIRT_SLAB_ITEM_KEY: ResourceKey<Item> =
         ResourceKey.create(
             BuiltInRegistries.ITEM.key(),
@@ -124,28 +133,43 @@ object ModBlocks {
         )
 
 
-    val DIRT_SLAB: Block =
+    // ============================================================
+    // BLOCKS
+    // ============================================================
+    //
+    // IMPORTANT:
+    // Blocks are lazy because NeoForge registries are frozen
+    // when the mod constructor is created.
+    //
+    // The Block is created only when RegisterEvent actually
+    // requests it.
+    //
+
+    val DIRT_SLAB: Block by lazy(LazyThreadSafetyMode.NONE) {
         SlabBlock(
             BlockBehaviour.Properties
                 .ofFullCopy(Blocks.DIRT)
                 .setId(DIRT_SLAB_KEY)
         )
+    }
 
-    val GRASS_SLAB: Block =
+    val GRASS_SLAB: Block by lazy(LazyThreadSafetyMode.NONE) {
         SlabBlock(
             BlockBehaviour.Properties
                 .ofFullCopy(Blocks.GRASS_BLOCK)
                 .setId(GRASS_SLAB_KEY)
         )
+    }
 
-    val SAND_SLAB: Block =
+    val SAND_SLAB: Block by lazy(LazyThreadSafetyMode.NONE) {
         SlabBlock(
             BlockBehaviour.Properties
                 .ofFullCopy(Blocks.SAND)
                 .setId(SAND_SLAB_KEY)
         )
+    }
 
-    val PEBBLE: Block =
+    val PEBBLE: Block by lazy(LazyThreadSafetyMode.NONE) {
         PebbleBlock(
             BlockBehaviour.Properties
                 .ofFullCopy(Blocks.STONE)
@@ -154,52 +178,72 @@ object ModBlocks {
                 .noCollision()
                 .offsetType(BlockBehaviour.OffsetType.XZ)
         )
+    }
 
-    val TAIGA_LEAVES: Block =
+    val TAIGA_LEAVES: Block by lazy(LazyThreadSafetyMode.NONE) {
         ArisLeavesBlock(
             BlockBehaviour.Properties
                 .ofFullCopy(Blocks.SPRUCE_LEAVES)
                 .setId(TAIGA_LEAVES_KEY)
         )
+    }
 
 
-    val DIRT_SLAB_ITEM: Item =
+    // ============================================================
+    // BLOCK ITEMS
+    // ============================================================
+
+    val DIRT_SLAB_ITEM: Item by lazy(LazyThreadSafetyMode.NONE) {
         BlockItem(
             DIRT_SLAB,
             Item.Properties()
                 .setId(DIRT_SLAB_ITEM_KEY)
         )
+    }
 
-    val GRASS_SLAB_ITEM: Item =
+    val GRASS_SLAB_ITEM: Item by lazy(LazyThreadSafetyMode.NONE) {
         BlockItem(
             GRASS_SLAB,
             Item.Properties()
                 .setId(GRASS_SLAB_ITEM_KEY)
         )
+    }
 
-    val SAND_SLAB_ITEM: Item =
+    val SAND_SLAB_ITEM: Item by lazy(LazyThreadSafetyMode.NONE) {
         BlockItem(
             SAND_SLAB,
             Item.Properties()
                 .setId(SAND_SLAB_ITEM_KEY)
         )
+    }
 
-    val PEBBLE_ITEM: Item =
+    val PEBBLE_ITEM: Item by lazy(LazyThreadSafetyMode.NONE) {
         BlockItem(
             PEBBLE,
             Item.Properties()
                 .setId(PEBBLE_ITEM_KEY)
         )
+    }
 
-    val TAIGA_LEAVES_ITEM: Item =
+    val TAIGA_LEAVES_ITEM: Item by lazy(LazyThreadSafetyMode.NONE) {
         BlockItem(
             TAIGA_LEAVES,
             Item.Properties()
                 .setId(TAIGA_LEAVES_ITEM_KEY)
         )
+    }
 
+
+    // ============================================================
+    // FABRIC REGISTRATION
+    // ============================================================
 
     fun register() {
+
+        // ------------------------------------------------------------
+        // BLOCKS
+        // ------------------------------------------------------------
+
         Registry.register(
             BuiltInRegistries.BLOCK,
             DIRT_SLAB_KEY,
@@ -231,6 +275,10 @@ object ModBlocks {
         )
 
 
+        // ------------------------------------------------------------
+        // ITEMS
+        // ------------------------------------------------------------
+
         Registry.register(
             BuiltInRegistries.ITEM,
             DIRT_SLAB_ITEM_KEY,
@@ -261,6 +309,8 @@ object ModBlocks {
             TAIGA_LEAVES_ITEM
         )
 
-        Aris.LOGGER.info("Aris blocks and block items registered")
+        Aris.LOGGER.info(
+            "Aris blocks and block items registered"
+        )
     }
 }

@@ -1,0 +1,35 @@
+package com.grindlesstudio.aris.mixin
+
+import net.minecraft.core.BlockPos
+import net.minecraft.world.level.BlockGetter
+import net.minecraft.world.level.block.LeavesBlock
+import net.minecraft.world.level.block.state.BlockBehaviour
+import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.phys.shapes.CollisionContext
+import net.minecraft.world.phys.shapes.Shapes
+import net.minecraft.world.phys.shapes.VoxelShape
+import org.spongepowered.asm.mixin.Mixin
+import org.spongepowered.asm.mixin.injection.At
+import org.spongepowered.asm.mixin.injection.Inject
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
+
+@Mixin(BlockBehaviour::class)
+abstract class LeavesCollisionMixin {
+
+    @Inject(
+        method = ["getCollisionShape"],
+        at = [At("HEAD")],
+        cancellable = true
+    )
+    private fun removeLeavesCollision(
+        state: BlockState,
+        world: BlockGetter,
+        pos: BlockPos,
+        context: CollisionContext,
+        cir: CallbackInfoReturnable<VoxelShape>
+    ) {
+        if (state.block is LeavesBlock) {
+            cir.returnValue = Shapes.empty()
+        }
+    }
+}
