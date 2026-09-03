@@ -3,16 +3,15 @@
     "minecraft:overworld": {
       "type": "minecraft:overworld",
       "generator": {
-        "type": "aris:aris",
+        "type": "minecraft:noise",
         "biome_source": {
-          "type": "aris:aris",
-          "ocean": "minecraft:ocean",
-          "plains": "minecraft:plains",
-          "taiga": "minecraft:taiga",
-          "mountains": "minecraft:windswept_hills"
-        }
+          "type": "minecraft:multi_noise",
+          "preset": "minecraft:overworld"
+        },
+        "settings": "aris:aris"
       }
     },
+
     "minecraft:the_nether": {
       "type": "minecraft:the_nether",
       "generator": {
@@ -24,6 +23,7 @@
         "settings": "minecraft:nether"
       }
     },
+
     "minecraft:the_end": {
       "type": "minecraft:the_end",
       "generator": {

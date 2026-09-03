@@ -1,6 +1,6 @@
 {
   "type": "minecraft:noise",
-  "noise": "minecraft:overworld/continents",
+  "noise": "aris:continentalness",
   "xz_scale": 0.35,
-  "y_scale": 1.0
+  "y_scale": 0.0
 }

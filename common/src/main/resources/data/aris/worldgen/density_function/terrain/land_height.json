@@ -1,12 +1,13 @@
 {
   "type": "minecraft:add",
-  "argument1": 4.0,
+  "argument1": -90.0,
   "argument2": {
     "type": "minecraft:mul",
     "argument1": {
-      "type": "minecraft:abs",
-      "argument": "aris:terrain/continentalness"
+      "type": "minecraft:max",
+      "argument1": 0.0,
+      "argument2": "aris:terrain/continentalness"
     },
-    "argument2": 145.0
+    "argument2": 150.0
   }
 }
