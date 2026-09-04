@@ -2,8 +2,8 @@ package com.grindlesstudio.aris
 
 import com.grindlesstudio.aris.block.ModBlocks
 import com.grindlesstudio.aris.registry.ModFeatures
-import com.grindlesstudio.aris.worldgen.ModBiomeSources
-import com.grindlesstudio.aris.worldgen.ModChunkGenerators
+//import com.grindlesstudio.aris.worldgen.ModBiomeSources
+//import com.grindlesstudio.aris.worldgen.ModChunkGenerators
 import net.minecraft.core.registries.BuiltInRegistries
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.fml.common.Mod
@@ -101,25 +101,25 @@ class ArisNeoForge(modBus: IEventBus) {
         // ============================================================
         // BIOME SOURCES
         // ============================================================
-
-        event.register(BuiltInRegistries.BIOME_SOURCE.key()) { registry ->
-
-            registry.register(
-                Aris.id("aris"),
-                ModBiomeSources.ARIS_CODEC
-            )
-        }
+//
+//        event.register(BuiltInRegistries.BIOME_SOURCE.key()) { registry ->
+//
+//            registry.register(
+//                Aris.id("aris"),
+//                ModBiomeSources.ARIS_CODEC
+//            )
+//        }
 
         // ============================================================
         // CHUNK GENERATORS
         // ============================================================
 
-        event.register(BuiltInRegistries.CHUNK_GENERATOR.key()) { registry ->
-
-            registry.register(
-                Aris.id("aris"),
-                ModChunkGenerators.ARIS_CODEC
-            )
-        }
+//        event.register(BuiltInRegistries.CHUNK_GENERATOR.key()) { registry ->
+//
+//            registry.register(
+//                Aris.id("aris"),
+//                ModChunkGenerators.ARIS_CODEC
+//            )
+//        }
     }
 }
