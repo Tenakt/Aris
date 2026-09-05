@@ -96,6 +96,16 @@ dependencies {
             "maven.modrinth:1eAoo2KR:HZs9mrWM"
     )
 
+    // JEI compile only
+    compileOnly(
+            "mezz.jei:jei-${minecraft_version}-neoforge-api:latest.release"
+    )
+
+    // JEI runtime
+    runtimeOnly(
+            "mezz.jei:jei-${minecraft_version}-neoforge:latest.release"
+    )
+
     // Existing dependency from your project
     implementation(
             "maven.modrinth:ordsPcFz:WSKgpZoB"

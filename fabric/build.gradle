@@ -15,75 +15,57 @@ dependencies {
     // Fabric
     // =====================================================
 
-    modImplementation(
-            "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    )
+    modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
 
-    modImplementation(
-            "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
-    )
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
 
-    modImplementation(
-            "net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}"
-    )
+    modImplementation("net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}")
 
     // Architectury API
-    modImplementation(
-            "maven.modrinth:lhGA9TYQ:uNdfrcQ8"
-    )
+    modImplementation("maven.modrinth:lhGA9TYQ:uNdfrcQ8")
 
     // UI Lib
-    modImplementation(
-            "curse.maven:ui-933200:7650065"
-    )
+    modImplementation("curse.maven:ui-933200:7650065")
 
     // YAML Config
-    modImplementation(
-            "curse.maven:yaml-config-1128669:8188613"
-    )
+    modImplementation("curse.maven:yaml-config-1128669:8188613")
 
     // Arc Lib
-    modImplementation(
-            "curse.maven:arc-883593:7654922"
-    )
+    modImplementation("curse.maven:arc-883593:7654922")
 
     // Item Restrictions
-    modImplementation(
-            "curse.maven:item-restrictions-887774:7650342"
-    )
+    modImplementation("curse.maven:item-restrictions-887774:7650342")
 
     // TerraBlender
-    modImplementation(
-            "maven.modrinth:kkmrDlKT:${terrablender_fabric_id}"
-    )
+    modImplementation("maven.modrinth:kkmrDlKT:${terrablender_fabric_id}")
 
     // Lithostitched
-    modImplementation(
-            "maven.modrinth:XaDC71GB:pLbQKCOo"
-    )
+    modImplementation("maven.modrinth:XaDC71GB:pLbQKCOo")
 
     // Moog's Structure Lib
-    modImplementation(
-            "maven.modrinth:1oUDhxuy:2idiRwR3"
-    )
+    modImplementation("maven.modrinth:1oUDhxuy:2idiRwR3")
 
     // Geckolib
-    modImplementation(
-            "maven.modrinth:8BmcQJ2H:G1BvHQDL"
-    )
+    modImplementation("maven.modrinth:8BmcQJ2H:G1BvHQDL")
 
     // YetAnotherConfigLib (YACL)
-//    modImplementation(
-//            "maven.modrinth:1eAoo2KR:pHWDw3Vc"
-//    )
+    modImplementation("maven.modrinth:1eAoo2KR:pHWDw3Vc")
 
-    // =====================================================
     // NightConfig
-    // =====================================================
+    modImplementation("com.electronwill.night-config:core:3.8.1")
 
-    modImplementation(
-            "com.electronwill.night-config:core:3.8.1"
-    )
+    // JEI compile only
+    modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-fabric-api:latest.release")
+
+    // JEI runtime
+    modRuntimeOnly("mezz.jei:jei-${minecraft_version}-fabric:latest.release")
+
+    // Better Combat
+    modImplementation include("maven.modrinth:5sy6g3kz:MLmCv38Y")
+
+    // Транзитивная зависимость для Better Combat
+    modImplementation("maven.modrinth:EivZOK5a:Cn6nGALI")
+
 
     modImplementation(
             "com.electronwill.night-config:toml:3.8.1"

@@ -5,8 +5,11 @@
       "generator": {
         "type": "minecraft:noise",
         "biome_source": {
-          "type": "minecraft:multi_noise",
-          "preset": "minecraft:overworld"
+          "type": "aris:aris",
+          "ocean": "minecraft:ocean",
+          "plains": "minecraft:plains",
+          "taiga": "minecraft:taiga",
+          "mountains": "minecraft:windswept_hills"
         },
         "settings": "aris:aris"
       }
