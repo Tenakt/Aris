@@ -2,6 +2,7 @@ package com.grindlesstudio.aris
 
 import com.grindlesstudio.aris.block.ModBlocks
 import com.grindlesstudio.aris.registry.ModFeatures
+import com.grindlesstudio.aris.worldgen.ModBiomeSources
 //import com.grindlesstudio.aris.worldgen.ModBiomeSources
 //import com.grindlesstudio.aris.worldgen.ModChunkGenerators
 import net.fabricmc.api.ModInitializer
@@ -28,7 +29,7 @@ class ArisFabric : ModInitializer {
         // Biome Source
         // ----------------------------------------------------
 
-//        ModBiomeSources.registerFabric()
+        ModBiomeSources.registerFabric()
 
         // ----------------------------------------------------
         // Chunk Generator

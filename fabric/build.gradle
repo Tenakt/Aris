@@ -48,11 +48,12 @@ dependencies {
     // Geckolib
     modImplementation("maven.modrinth:8BmcQJ2H:G1BvHQDL")
 
-    // YetAnotherConfigLib (YACL)
-    modImplementation("maven.modrinth:1eAoo2KR:pHWDw3Vc")
+//    // YetAnotherConfigLib (YACL)
+//    modImplementation("maven.modrinth:1eAoo2KR:pHWDw3Vc")
 
     // NightConfig
     modImplementation("com.electronwill.night-config:core:3.8.1")
+    modImplementation("com.electronwill.night-config:toml:3.8.1")
 
     // JEI compile only
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-fabric-api:latest.release")
@@ -61,20 +62,16 @@ dependencies {
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-fabric:latest.release")
 
     // Better Combat
-    modImplementation include("maven.modrinth:5sy6g3kz:MLmCv38Y")
+    modImplementation("maven.modrinth:5sy6g3kz:MLmCv38Y")
 
     // Player Animation Library
-    modImplementation include("maven.modrinth:ha1mEyJS:wJLdv4ZQ")
+    modImplementation("com.zigythebird.playeranim:PlayerAnimationLibFabric:1.1.10+mc.1.21.11")
 
     // Cloth Config API for Better Combat
-    modImplementation include("maven.modrinth:9s6osm5g:xuX40TN5")
+    modImplementation("maven.modrinth:9s6osm5g:xuX40TN5")
 
     // Tiny Config for Better Combat
-    modImplementation include("maven.modrinth:EivZOK5a:Cn6nGALI")
-
-    modImplementation(
-            "com.electronwill.night-config:toml:3.8.1"
-    )
+    modImplementation("maven.modrinth:EivZOK5a:Cn6nGALI")
 
     // =====================================================
     // Common

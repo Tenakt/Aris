@@ -106,6 +106,21 @@ dependencies {
             "mezz.jei:jei-${minecraft_version}-neoforge:latest.release"
     )
 
+    // Better Combat — NeoForge 1.21.11
+    implementation (
+            "maven.modrinth:5sy6g3kz:lkzLyXbV"
+    )
+
+    // Player Animation Library — NeoForge 1.21.11
+    implementation (
+            "curse.maven:player-animation-library-1283899:8507833"
+    )
+
+    // Cloth Config API — NeoForge 1.21.11
+    implementation (
+            "maven.modrinth:9s6osm5g:Wsus0EWg"
+    )
+
     // Existing dependency from your project
     implementation(
             "maven.modrinth:ordsPcFz:WSKgpZoB"
