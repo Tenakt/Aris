@@ -63,9 +63,14 @@ dependencies {
     // Better Combat
     modImplementation include("maven.modrinth:5sy6g3kz:MLmCv38Y")
 
-    // Транзитивная зависимость для Better Combat
-    modImplementation("maven.modrinth:EivZOK5a:Cn6nGALI")
+    // Player Animation Library
+    modImplementation include("maven.modrinth:ha1mEyJS:wJLdv4ZQ")
 
+    // Cloth Config API for Better Combat
+    modImplementation include("maven.modrinth:9s6osm5g:xuX40TN5")
+
+    // Tiny Config for Better Combat
+    modImplementation include("maven.modrinth:EivZOK5a:Cn6nGALI")
 
     modImplementation(
             "com.electronwill.night-config:toml:3.8.1"
