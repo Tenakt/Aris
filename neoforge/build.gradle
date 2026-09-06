@@ -51,6 +51,11 @@ dependencies {
             "maven.modrinth:lhGA9TYQ:EvL9NK2R"
     )
 
+    // Kotlin for Forge
+    implementation(
+            "maven.modrinth:ordsPcFz:WSKgpZoB"
+    )
+
     // UI Lib
     implementation(
             "curse.maven:ui-933200:7650066"
@@ -129,6 +134,11 @@ dependencies {
 
 tasks.withType(JavaCompile).configureEach {
     options.release = 21
+}
+
+jar {
+    dependsOn(":common:classes")
+    from(project(":common").sourceSets.main.output)
 }
 
 tasks.processResources {
