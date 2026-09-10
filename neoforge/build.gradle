@@ -46,14 +46,14 @@ neoForge {
 dependencies {
     implementation project(":common")
 
-    // Architectury API 19.0.1
+    // Architectury API
     implementation(
-            "maven.modrinth:lhGA9TYQ:EvL9NK2R"
+            "dev.architectury:architectury-neoforge:${architectury_version}"
     )
 
     // Kotlin for Forge
     implementation(
-            "maven.modrinth:ordsPcFz:WSKgpZoB"
+            "maven.modrinth:ordsPcFz:${neoforge_kotlin_version}"
     )
 
     // UI Lib
@@ -96,11 +96,6 @@ dependencies {
             "maven.modrinth:8BmcQJ2H:FpONDAt3"
     )
 
-    // YetAnotherConfigLib (YACL)
-    implementation(
-            "maven.modrinth:1eAoo2KR:HZs9mrWM"
-    )
-
     // JEI compile only
     compileOnly(
             "mezz.jei:jei-${minecraft_version}-neoforge-api:latest.release"
@@ -111,24 +106,19 @@ dependencies {
             "mezz.jei:jei-${minecraft_version}-neoforge:latest.release"
     )
 
-    // Better Combat — NeoForge 1.21.11
-    implementation (
+    // Better Combat
+    implementation(
             "maven.modrinth:5sy6g3kz:lkzLyXbV"
     )
 
-    // Player Animation Library — NeoForge 1.21.11
-    implementation (
+    // Player Animation Library
+    implementation(
             "curse.maven:player-animation-library-1283899:8507833"
     )
 
-    // Cloth Config API — NeoForge 1.21.11
-    implementation (
-            "maven.modrinth:9s6osm5g:Wsus0EWg"
-    )
-
-    // Existing dependency from your project
+    // Cloth Config API
     implementation(
-            "maven.modrinth:ordsPcFz:WSKgpZoB"
+            "maven.modrinth:9s6osm5g:Wsus0EWg"
     )
 }
 

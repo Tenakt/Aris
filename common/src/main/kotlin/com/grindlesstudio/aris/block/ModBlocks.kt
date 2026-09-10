@@ -18,49 +18,6 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.VoxelShape
 
-
-class PebbleBlock(
-    properties: BlockBehaviour.Properties
-) : Block(properties) {
-
-    override fun canSurvive(
-        state: BlockState,
-        level: LevelReader,
-        pos: BlockPos
-    ): Boolean {
-        val downPos = pos.below()
-
-        return level.getBlockState(downPos)
-            .isFaceSturdy(level, downPos, Direction.UP)
-    }
-
-    override fun getShape(
-        state: BlockState,
-        level: BlockGetter,
-        pos: BlockPos,
-        context: CollisionContext
-    ): VoxelShape {
-
-        val baseShape = Block.box(
-            4.8,
-            0.0,
-            4.8,
-            11.2,
-            2.0,
-            11.2
-        )
-
-        val offset = state.getOffset(pos)
-
-        return baseShape.move(
-            offset.x,
-            offset.y,
-            offset.z
-        )
-    }
-}
-
-
 object ModBlocks {
 
     // ============================================================
@@ -97,6 +54,12 @@ object ModBlocks {
             Aris.id("taiga_leaves")
         )
 
+    val STICK_KEY: ResourceKey<Block> =
+        ResourceKey.create(
+            BuiltInRegistries.BLOCK.key(),
+            Aris.id("stick")
+        )
+
 
     // ============================================================
     // ITEM KEYS
@@ -130,6 +93,12 @@ object ModBlocks {
         ResourceKey.create(
             BuiltInRegistries.ITEM.key(),
             Aris.id("taiga_leaves")
+        )
+
+    val STICK_ITEM_KEY: ResourceKey<Item> =
+        ResourceKey.create(
+            BuiltInRegistries.ITEM.key(),
+            Aris.id("stick")
         )
 
 
@@ -188,6 +157,17 @@ object ModBlocks {
         )
     }
 
+    val STICK: Block by lazy(LazyThreadSafetyMode.NONE) {
+        StickBlock(
+            BlockBehaviour.Properties
+                .ofFullCopy(Blocks.SHORT_GRASS)
+                .setId(STICK_KEY)
+                .noOcclusion()
+                .noCollision()
+                .offsetType(BlockBehaviour.OffsetType.XZ)
+        )
+    }
+
 
     // ============================================================
     // BLOCK ITEMS
@@ -233,6 +213,14 @@ object ModBlocks {
         )
     }
 
+    val STICK_ITEM: Item by lazy(LazyThreadSafetyMode.NONE) {
+        BlockItem(
+            STICK,
+            Item.Properties()
+                .setId(STICK_ITEM_KEY)
+        )
+    }
+
 
     // ============================================================
     // FABRIC REGISTRATION
@@ -274,6 +262,13 @@ object ModBlocks {
             TAIGA_LEAVES
         )
 
+        Registry.register(
+            BuiltInRegistries.BLOCK,
+            STICK_KEY,
+            STICK
+        )
+
+
 
         // ------------------------------------------------------------
         // ITEMS
@@ -307,6 +302,12 @@ object ModBlocks {
             BuiltInRegistries.ITEM,
             TAIGA_LEAVES_ITEM_KEY,
             TAIGA_LEAVES_ITEM
+        )
+
+        Registry.register(
+            BuiltInRegistries.ITEM,
+            STICK_ITEM_KEY,
+            STICK_ITEM
         )
 
         Aris.LOGGER.info(

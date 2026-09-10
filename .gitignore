@@ -28,9 +28,9 @@ bin/
 
 *.DS_Store
 
-# fabric
-
+# neoforge / fabric
 run/
+runs/
 
 # java
 
@@ -38,3 +38,7 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+
+# logs & architectury cache
+*.log
+.architectury-transformer/

@@ -1,5 +1,9 @@
 plugins {
-    id "fabric-loom" version "1.17-SNAPSHOT"
+    id "dev.architectury.loom"
+}
+
+architectury {
+    fabric()
 }
 
 base {
@@ -22,7 +26,7 @@ dependencies {
     modImplementation("net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}")
 
     // Architectury API
-    modImplementation include("maven.modrinth:lhGA9TYQ:uNdfrcQ8")
+    modImplementation("dev.architectury:architectury-fabric:${architectury_version}")
 
     // UI Lib
     modImplementation include("curse.maven:ui-933200:7650065")
@@ -40,16 +44,13 @@ dependencies {
     modImplementation include("maven.modrinth:kkmrDlKT:${terrablender_fabric_id}")
 
     // Lithostitched
-    modImplementation include("maven.modrinth:XaDC71GB:pLbQKCOo")
+    modImplementation include("maven.modrinth:XaDC71GB:${lithostitched_fabric_version}")
 
     // Moog's Structure Lib
-    modImplementation include("maven.modrinth:1oUDhxuy:2idiRwR3")
+    modImplementation include("maven.modrinth:1oUDhxuy:${moogs_structure_lib_version}")
 
     // Geckolib
     modImplementation include("maven.modrinth:8BmcQJ2H:G1BvHQDL")
-
-//    // YetAnotherConfigLib (YACL)
-//    modImplementation("maven.modrinth:1eAoo2KR:pHWDw3Vc")
 
     // NightConfig
     modImplementation("com.electronwill.night-config:core:3.8.1")
@@ -93,7 +94,7 @@ loom {
     mods {
         "${project.mod_id}" {
             sourceSet sourceSets.main
-            sourceSet("main", ":common")
+            sourceSet project(":common").sourceSets.main
         }
     }
 

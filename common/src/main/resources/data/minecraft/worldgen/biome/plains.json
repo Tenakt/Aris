@@ -25,7 +25,8 @@
     [],
     [
       "aris:pebble_patch",
-      "aris:slope_slabs"
+      "aris:slope_slabs",
+      "aris:stick_patch"
     ],
     []
   ]

@@ -2,6 +2,7 @@ package com.grindlesstudio.aris
 
 import com.grindlesstudio.aris.block.ModBlocks
 import com.grindlesstudio.aris.registry.ModFeatures
+import com.grindlesstudio.aris.worldgen.ArisSpawn
 import com.grindlesstudio.aris.worldgen.ModBiomeSources
 //import com.grindlesstudio.aris.worldgen.ModChunkGenerators
 import net.minecraft.core.registries.BuiltInRegistries
@@ -52,6 +53,11 @@ class ArisNeoForge(modBus: IEventBus) {
                 Aris.id("taiga_leaves"),
                 ModBlocks.TAIGA_LEAVES
             )
+
+            registry.register(
+                Aris.id("stick"),
+                ModBlocks.STICK
+            )
         }
 
         // ============================================================
@@ -84,6 +90,11 @@ class ArisNeoForge(modBus: IEventBus) {
                 Aris.id("taiga_leaves"),
                 ModBlocks.TAIGA_LEAVES_ITEM
             )
+
+            registry.register(
+                Aris.id("stick"),
+                ModBlocks.STICK_ITEM
+            )
         }
 
         // ============================================================
@@ -110,16 +121,7 @@ class ArisNeoForge(modBus: IEventBus) {
             )
         }
 
-        // ============================================================
-        // CHUNK GENERATORS
-        // ============================================================
 
-//        event.register(BuiltInRegistries.CHUNK_GENERATOR.key()) { registry ->
-//
-//            registry.register(
-//                Aris.id("aris"),
-//                ModChunkGenerators.ARIS_CODEC
-//            )
-//        }
+        ArisSpawn.init()
     }
 }

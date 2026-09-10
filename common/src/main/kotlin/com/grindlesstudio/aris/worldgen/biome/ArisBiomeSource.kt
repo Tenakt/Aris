@@ -67,27 +67,7 @@ class ArisBiomeSource(
         noise: Climate.Sampler
     ): Holder<Biome> {
 
-        val region =
-            ArisBiomeRegion.getRegion(
-                x,
-                z,
-                0L
-            )
-
-        return when (region) {
-
-            ArisRegion.OCEAN ->
-                ocean
-
-            ArisRegion.PLAINS ->
-                plains
-
-            ArisRegion.TAIGA ->
-                taiga
-
-            ArisRegion.MOUNTAINS ->
-                mountains
-        }
+        return plains
     }
 
     override fun collectPossibleBiomes(): Stream<Holder<Biome>> {

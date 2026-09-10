@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": [
+      { "model": "aris:block/stick" },
+      { "model": "aris:block/stick", "y": 90 },
+      { "model": "aris:block/stick", "y": 180 },
+      { "model": "aris:block/stick", "y": 270 }
+    ]
+  }
+}

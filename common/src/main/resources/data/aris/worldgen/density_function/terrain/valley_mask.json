@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:noise",
+  "noise": "aris:valleys",
+  "xz_scale": 0.18,
+  "y_scale": 0.0
+}

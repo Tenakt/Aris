@@ -1,5 +1,22 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		gradlePluginPortal()
+		maven {
+			name = "Architectury"
+			url = "https://maven.architectury.dev/"
+		}
+	}
+
+	dependencies {
+		classpath("gradle.plugin.org.jetbrains.gradle.plugin.idea-ext:gradle-idea-ext:1.4.1")
+	}
+}
+
 plugins {
-	id "org.jetbrains.kotlin.jvm" version "2.4.10" apply false
+	id "architectury-plugin" version "3.5-SNAPSHOT" apply false
+	id "dev.architectury.loom" version "1.17-SNAPSHOT" apply false
+	id "org.jetbrains.kotlin.jvm" version "2.4.20" apply false
 }
 
 allprojects {
@@ -59,7 +76,9 @@ allprojects {
 }
 
 subprojects {
+	apply plugin: "java"
 	apply plugin: "org.jetbrains.kotlin.jvm"
+	apply plugin: "architectury-plugin"
 
 	java {
 		toolchain {
