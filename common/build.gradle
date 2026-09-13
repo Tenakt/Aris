@@ -27,8 +27,8 @@ repositories {
     }
 
     maven {
-        name = "Architectury"
-        url = "https://maven.architectury.dev/"
+        name = "DAQEM"
+        url = "https://maven.daqem.com/releases"
     }
 }
 
@@ -38,7 +38,7 @@ dependencies {
     mappings loom.officialMojangMappings()
 
     modImplementation(
-            "dev.architectury:architectury:${architectury_version}"
+            "com.daqem.knot:knot-common:${knot_version}"
     )
 }
 
