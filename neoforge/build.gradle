@@ -46,9 +46,9 @@ neoForge {
 dependencies {
     implementation project(":common")
 
-    // Architectury API
+    // Knot
     implementation(
-            "dev.architectury:architectury-neoforge:${architectury_version}"
+            "com.daqem.knot:knot-neoforge:${knot_version}"
     )
 
     // Kotlin for Forge
