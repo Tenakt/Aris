@@ -25,8 +25,8 @@ dependencies {
 
     modImplementation("net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}")
 
-    // Architectury API
-    modImplementation("dev.architectury:architectury-fabric:${architectury_version}")
+    // Knot
+    modImplementation("com.daqem.knot:knot-fabric:${knot_version}")
 
     // UI Lib
     modImplementation include("curse.maven:ui-933200:7650065")
@@ -77,7 +77,6 @@ dependencies {
     // =====================================================
     // Common
     // =====================================================
-
 
     implementation project(
             path: ":common",
