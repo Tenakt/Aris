@@ -40,9 +40,10 @@ allprojects {
 
 		// DAQEM
 		maven {
-			name = "DAQEM"
-			url = "https://maven.daqem.com/releases"
+			name = "DAQEM Studios Maven"
+			url = 'https://maven.daqem.com/releases'
 		}
+
 
 		// Fabric
 		maven {

@@ -37,9 +37,9 @@ dependencies {
 
     mappings loom.officialMojangMappings()
 
-    modImplementation(
-            "dev.architectury:architectury:${architectury_version}"
-    )
+    modImplementation("dev.architectury:architectury:${architectury_version}")
+
+    modImplementation "com.daqem.uilib:uilib-common:${uilib_version}"
 }
 
 tasks.withType(JavaCompile).configureEach {

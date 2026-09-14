@@ -29,7 +29,7 @@ dependencies {
     modImplementation("dev.architectury:architectury-fabric:${architectury_version}")
 
     // UI Lib
-    modImplementation include("curse.maven:ui-933200:7650065")
+    modImplementation "com.daqem.uilib:uilib-fabric:${uilib_version}"
 
     // YAML Config
     modImplementation include("curse.maven:yaml-config-1128669:8188613")

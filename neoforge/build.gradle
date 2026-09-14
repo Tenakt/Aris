@@ -58,7 +58,7 @@ dependencies {
 
     // UI Lib
     implementation(
-            "curse.maven:ui-933200:7650066"
+            "com.daqem.uilib:uilib-neoforge:${uilib_version}"
     )
 
     // YAML Config
