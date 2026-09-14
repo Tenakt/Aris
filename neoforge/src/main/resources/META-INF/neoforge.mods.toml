@@ -28,7 +28,7 @@ side="BOTH"
 [[dependencies.${mod_id}]]
 modId="knot"
 type="required"
-versionRange="[19.1.0,)"
+versionRange="[19.2.11,)"
 ordering="NONE"
 side="BOTH"
 

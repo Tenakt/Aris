@@ -37,9 +37,7 @@ dependencies {
 
     mappings loom.officialMojangMappings()
 
-    modImplementation(
-            "com.daqem.knot:knot-common:${knot_version}"
-    )
+    modImplementation "com.daqem.knot:knot-common:${knot_version}"
 }
 
 tasks.withType(JavaCompile).configureEach {

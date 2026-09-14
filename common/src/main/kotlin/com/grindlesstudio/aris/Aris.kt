@@ -3,6 +3,7 @@ package com.grindlesstudio.aris
 import com.mojang.logging.LogUtils
 import net.minecraft.resources.Identifier
 import org.slf4j.Logger
+import com.daqem.knot.Knot
 
 object Aris {
 
@@ -11,6 +12,8 @@ object Aris {
     const val MOD_VERSION = "1.0.0"
 
     val LOGGER: Logger = LogUtils.getLogger()
+
+    val KNOT = Knot(MOD_ID)
 
     fun id(path: String): Identifier {
         return Identifier.fromNamespaceAndPath(MOD_ID, path)
