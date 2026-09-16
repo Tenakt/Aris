@@ -1,6 +1,6 @@
 package com.grindlesstudio.aris.worldgen
 
-import dev.architectury.event.events.common.PlayerEvent
+import com.daqem.knot.events.common.entity.player.PlayerEvent
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
@@ -15,11 +15,13 @@ object ArisSpawn {
         }
 
         // Игрок возрождается после смерти
-        PlayerEvent.PLAYER_RESPAWN.register { player, _, _ -> checkAndTeleportFromWater(player) } }
+        PlayerEvent.PLAYER_RESPAWN.register { player, _ ->
+            checkAndTeleportFromWater(player)
+        }
+    }
 
     private fun checkAndTeleportFromWater(player: ServerPlayer) {
         val level = player.level()
-
         val pos = player.blockPosition()
 
         // Проверяем воду в ногах и на уровне головы.
@@ -45,7 +47,6 @@ object ArisSpawn {
         level: ServerLevel,
         startPos: BlockPos
     ): BlockPos {
-
         var currentPos = startPos
 
         while (
@@ -58,11 +59,8 @@ object ArisSpawn {
         val radius = 15
 
         for (r in 0..radius) {
-
             for (x in -r..r) {
-
                 for (z in -r..r) {
-
                     val checkPos = currentPos.offset(x, 0, z)
 
                     if (isSafePosition(level, checkPos)) {
@@ -79,7 +77,6 @@ object ArisSpawn {
         level: ServerLevel,
         checkPos: BlockPos
     ): Boolean {
-
         val feetPos = checkPos
         val headPos = checkPos.above()
         val groundPos = checkPos.below()
