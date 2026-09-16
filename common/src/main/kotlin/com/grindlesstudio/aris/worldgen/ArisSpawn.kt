@@ -15,7 +15,7 @@ object ArisSpawn {
         }
 
         // Игрок возрождается после смерти
-        PlayerEvent.PLAYER_RESPAWN.register { player, _, _ ->
+        PlayerEvent.PLAYER_RESPAWN.register { player, _ ->
             checkAndTeleportFromWater(player)
         }
     }

@@ -46,6 +46,8 @@ neoForge {
 dependencies {
     implementation project(":common")
 
+    implementation("dev.architectury:architectury-neoforge:${architectury_version}")
+
     // Knot
     implementation(
             "com.daqem.knot:knot-neoforge:${knot_version}"

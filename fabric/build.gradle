@@ -23,7 +23,9 @@ dependencies {
 
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
 
-    modImplementation("net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}")
+    modImplementation("net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}")\
+
+    modImplementation("dev.architectury:architectury-fabric:${architectury_version}")
 
     // Knot
     modImplementation("com.daqem.knot:knot-fabric:${knot_version}")
@@ -118,14 +120,16 @@ tasks.processResources {
     inputs.properties(
             "version": project.version,
             "minecraft_version": project.minecraft_version,
-            "fabric_loader_version": project.fabric_loader_version
+            "fabric_loader_version": project.fabric_loader_version,
+            "knot_version": project.knot_version
     )
 
     filesMatching("fabric.mod.json") {
         expand(
                 "version": project.version,
                 "minecraft_version": project.minecraft_version,
-                "fabric_loader_version": project.fabric_loader_version
+                "fabric_loader_version": project.fabric_loader_version,
+                "knot_version": project.knot_version
         )
     }
 }
