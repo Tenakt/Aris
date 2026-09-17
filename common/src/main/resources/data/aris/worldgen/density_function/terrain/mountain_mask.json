@@ -4,7 +4,12 @@
     "type": "minecraft:mul",
     "argument1": {
       "type": "minecraft:add",
-      "argument1": "aris:ridges",
+      "argument1": {
+        "type": "minecraft:noise",
+        "noise": "aris:ridges",
+        "xz_scale": 0.55,
+        "y_scale": 0.0
+      },
       "argument2": -0.20
     },
     "argument2": 1.25
