@@ -23,7 +23,7 @@ dependencies {
 
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
 
-    modImplementation("net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}")\
+    modImplementation("net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}")
 
     modImplementation("dev.architectury:architectury-fabric:${architectury_version}")
 
@@ -31,7 +31,7 @@ dependencies {
     modImplementation("com.daqem.knot:knot-fabric:${knot_version}")
 
     // UI Lib
-    modImplementation "com.daqem.uilib:uilib-fabric:${uilib_version}"
+    modImplementation include("curse.maven:ui-933200:7650065")
 
     // YAML Config
     modImplementation include("curse.maven:yaml-config-1128669:8188613")

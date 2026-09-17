@@ -1,18 +1,17 @@
 {
   "type": "minecraft:mul",
-  "argument1": "aris:terrain/mountain_mask",
-  "argument2": {
+  "argument1": {
     "type": "minecraft:mul",
-    "argument1": "aris:terrain/plains_mask",
+    "argument1": "aris:terrain/mountain_mask",
     "argument2": {
-      "type": "minecraft:clamp",
-      "input": {
-        "type": "minecraft:add",
+      "type": "minecraft:add",
+      "argument1": 0.75,
+      "argument2": {
+        "type": "minecraft:mul",
         "argument1": "aris:terrain/valley_mask",
-        "argument2": 0.35
-      },
-      "min": 0.0,
-      "max": 1.0
+        "argument2": 0.25
+      }
     }
-  }
+  },
+  "argument2": 110.0
 }

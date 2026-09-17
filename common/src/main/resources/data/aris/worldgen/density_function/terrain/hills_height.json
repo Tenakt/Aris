@@ -1,10 +1,14 @@
 {
   "type": "minecraft:mul",
   "argument1": {
-    "type": "minecraft:noise",
-    "noise": "aris:erosion",
-    "xz_scale": 0.35,
-    "y_scale": 0.0
+    "type": "minecraft:mul",
+    "argument1": {
+      "type": "minecraft:noise",
+      "noise": "aris:erosion",
+      "xz_scale": 0.18,
+      "y_scale": 0.0
+    },
+    "argument2": 0.5
   },
-  "argument2": 2.0
+  "argument2": 18.0
 }

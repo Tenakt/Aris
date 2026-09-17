@@ -1,6 +1,14 @@
 {
-  "type": "minecraft:noise",
-  "noise": "aris:ridges",
-  "xz_scale": 0.55,
-  "y_scale": 0.0
+  "type": "minecraft:clamp",
+  "input": {
+    "type": "minecraft:mul",
+    "argument1": {
+      "type": "minecraft:add",
+      "argument1": "aris:ridges",
+      "argument2": -0.20
+    },
+    "argument2": 1.25
+  },
+  "min": 0.0,
+  "max": 1.0
 }

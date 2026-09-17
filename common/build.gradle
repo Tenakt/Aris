@@ -30,6 +30,11 @@ repositories {
         name = "Architectury"
         url = "https://maven.architectury.dev/"
     }
+
+    maven {
+        name = "DAQEM"
+        url = "https://maven.daqem.com/releases"
+    }
 }
 
 dependencies {
@@ -37,9 +42,13 @@ dependencies {
 
     mappings loom.officialMojangMappings()
 
-    modImplementation(
-            "dev.architectury:architectury:${architectury_version}"
-    )
+    // DAQEM
+    modImplementation("com.daqem.knot:knot-common:${knot_version}")
+    modImplementation "com.daqem.arc:arc-common:${arc_version}"
+    modImplementation "com.daqem.uilib:uilib-common:${uilib_version}"
+    modImplementation "com.daqem.yamlconfig:yamlconfig-common:${yamlconfig_version}"
+
+    modImplementation "dev.architectury:architectury:${architectury_version}"
 }
 
 tasks.withType(JavaCompile).configureEach {
