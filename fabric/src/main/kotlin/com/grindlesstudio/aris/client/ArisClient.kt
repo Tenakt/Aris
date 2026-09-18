@@ -1,6 +1,7 @@
 package com.grindlesstudio.aris.client
 
 import com.grindlesstudio.aris.block.ModBlocks
+import com.grindlesstudio.aris.client.ui.ArisSkillScreen
 import dev.architectury.event.events.client.ClientTickEvent
 import dev.architectury.registry.client.keymappings.KeyMappingRegistry
 import net.fabricmc.api.ClientModInitializer
@@ -37,17 +38,17 @@ class ArisClient : ClientModInitializer {
 			ModBlocks.TAIGA_LEAVES
 		)
 
-//		KeyMappingRegistry.register(
-//			ArisKeyMappings.OPEN_COIN_SCREEN
-//		)
-//
-//		ClientTickEvent.CLIENT_POST.register {
-//
-//			if (ArisKeyMappings.OPEN_COIN_SCREEN.consumeClick()) {
-//				Minecraft.getInstance().setScreen(
-//					CoinScreen()
-//				)
-//			}
-//		}
+		KeyMappingRegistry.register(
+			ArisKeyMappings.OPEN_COIN_SCREEN
+		)
+
+		ClientTickEvent.CLIENT_POST.register {
+
+			if (ArisKeyMappings.OPEN_COIN_SCREEN.consumeClick()) {
+				Minecraft.getInstance().setScreen(
+					ArisSkillScreen()
+				)
+			}
+		}
 	}
 }

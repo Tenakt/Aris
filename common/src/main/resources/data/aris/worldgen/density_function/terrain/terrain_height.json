@@ -13,7 +13,7 @@
         "argument2": {
           "type": "minecraft:mul",
           "argument1": "aris:terrain/detail",
-          "argument2": 8.0
+          "argument2": 6.0
         }
       }
     }

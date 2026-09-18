@@ -23,9 +23,9 @@ dependencies {
 
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
 
-    modImplementation("net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}")
+    modImplementation include("net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}")
 
-    modImplementation("dev.architectury:architectury-fabric:${architectury_version}")
+    modImplementation include("dev.architectury:architectury-fabric:${architectury_version}")
 
     // Knot
     modImplementation("com.daqem.knot:knot-fabric:${knot_version}")
@@ -72,6 +72,9 @@ dependencies {
 
     // Cloth Config API for Better Combat
     modImplementation include("maven.modrinth:9s6osm5g:xuX40TN5")
+
+    // SmartBrainLib
+    modImplementation include("net.tslat.smartbrainlib:SmartBrainLib-neoforge-${minecraft_version}:${sbl_version}")
 
     // Tiny Config for Better Combat
     modImplementation include("maven.modrinth:EivZOK5a:Cn6nGALI")

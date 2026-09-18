@@ -32,6 +32,12 @@ allprojects {
 			url = "https://api.modrinth.com/maven"
 		}
 
+		// SmartBrainLib
+		maven {
+			name = 'SmartBrainLib'
+			url = 'https://dl.cloudsmith.io/public/tslat/sbl/maven/'
+		}
+
 		// CurseForge
 		maven {
 			name = "CurseForge"

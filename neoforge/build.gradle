@@ -88,6 +88,11 @@ dependencies {
             "maven.modrinth:XaDC71GB:GXKf1eIb"
     )
 
+    // SmartBrainLib
+    implementation(
+            "net.tslat.smartbrainlib:SmartBrainLib-neoforge-${minecraft_version}:${sbl_version}"
+    )
+
     // Moog's Structure Lib
     implementation(
             "maven.modrinth:1oUDhxuy:5MelBDO6"

@@ -1,10 +1,23 @@
 {
   "type": "minecraft:mul",
   "argument1": {
-    "type": "minecraft:noise",
-    "noise": "aris:erosion",
-    "xz_scale": 0.18,
-    "y_scale": 0.0
+    "type": "minecraft:mul",
+    "argument1": {
+      "type": "minecraft:clamp",
+      "input": {
+        "type": "minecraft:add",
+        "argument1": "aris:terrain/continentalness",
+        "argument2": -0.08
+      },
+      "min": 0.0,
+      "max": 1.0
+    },
+    "argument2": {
+      "type": "minecraft:noise",
+      "noise": "aris:erosion",
+      "xz_scale": 0.18,
+      "y_scale": 0.0
+    }
   },
   "argument2": 4.0
 }
