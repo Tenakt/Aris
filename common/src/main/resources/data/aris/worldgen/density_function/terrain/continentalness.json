@@ -1,6 +1,6 @@
 {
   "type": "minecraft:noise",
   "noise": "aris:continentalness",
-  "xz_scale": 0.35,
+  "xz_scale": 0.0008,
   "y_scale": 0.0
 }

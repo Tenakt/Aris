@@ -5,5 +5,6 @@ enum class ArisRegion {
     OCEAN,
     PLAINS,
     TAIGA,
-    MOUNTAINS
+    HILLS,
+    DESERT
 }

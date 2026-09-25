@@ -8,7 +8,13 @@
     "water_color": 4159204,
     "water_fog_color": 329011,
     "sky_color": 7907327,
-    "grass_color": 9485880
+    "grass_color": 9485880,
+    "particle": {
+      "options": {
+        "type": "minecraft:spore_blossom_air"
+      },
+      "probability": 0.2
+    }
   },
   "spawners": {},
   "spawn_costs": {},
@@ -16,7 +22,9 @@
   "features": [
     [],
     [],
-    [],
+    [
+      "aris:plains_rock"
+    ],
     [],
     [],
     [],
@@ -24,6 +32,17 @@
     [],
     [],
     [
+      "minecraft:glow_lichen",
+      "minecraft:patch_tall_grass_2",
+      "minecraft:patch_bush",
+      "minecraft:trees_plains",
+      "minecraft:flower_plains",
+      "minecraft:patch_grass_plain",
+      "minecraft:brown_mushroom_normal",
+      "minecraft:red_mushroom_normal",
+      "minecraft:patch_pumpkin",
+      "minecraft:patch_sugar_cane",
+      "minecraft:patch_firefly_bush_near_water",
       "aris:pebble_patch",
       "aris:slope_slabs",
       "aris:stick_patch"

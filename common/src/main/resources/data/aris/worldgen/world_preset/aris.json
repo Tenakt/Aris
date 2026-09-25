@@ -9,7 +9,8 @@
           "ocean": "minecraft:ocean",
           "plains": "minecraft:plains",
           "taiga": "minecraft:taiga",
-          "mountains": "minecraft:windswept_hills"
+          "hills": "minecraft:windswept_hills",
+          "desert": "minecraft:desert"
         },
         "settings": "aris:aris"
       }

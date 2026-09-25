@@ -79,6 +79,8 @@ dependencies {
     // Tiny Config for Better Combat
     modImplementation include("maven.modrinth:EivZOK5a:Cn6nGALI")
 
+    modLocalRuntime ("maven.modrinth:7tEfOcA7:PTS5o8ql")
+
     // =====================================================
     // Common
     // =====================================================

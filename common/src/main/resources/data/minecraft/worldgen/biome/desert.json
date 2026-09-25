@@ -1,0 +1,37 @@
+{
+  "temperature": 0.8,
+  "downfall": 0.4,
+  "has_precipitation": true,
+  "temperature_modifier": "none",
+  "effects": {
+    "fog_color": 12638463,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "sky_color": 7907327,
+    "particle": {
+      "options": {
+        "type": "minecraft:dripping_lava"
+      },
+      "probability": 0.5
+    }
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": [],
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "aris:pebble_patch",
+      "aris:slope_slabs"
+    ],
+    []
+  ]
+}

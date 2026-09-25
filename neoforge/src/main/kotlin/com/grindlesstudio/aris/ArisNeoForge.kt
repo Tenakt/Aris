@@ -3,9 +3,7 @@ package com.grindlesstudio.aris
 import com.grindlesstudio.aris.block.ModBlocks
 import com.grindlesstudio.aris.registry.ModFeatures
 import com.grindlesstudio.aris.skill.ArisSkillNetworking
-import com.grindlesstudio.aris.worldgen.ArisSpawn
 import com.grindlesstudio.aris.worldgen.ModBiomeSources
-//import com.grindlesstudio.aris.worldgen.ModChunkGenerators
 import net.minecraft.core.registries.BuiltInRegistries
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.fml.common.Mod
@@ -123,6 +121,5 @@ class ArisNeoForge(modBus: IEventBus) {
         }
 
         ArisSkillNetworking.init()
-        ArisSpawn.init()
     }
 }
