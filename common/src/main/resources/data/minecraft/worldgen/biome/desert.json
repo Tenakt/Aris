@@ -1,19 +1,13 @@
 {
-  "temperature": 0.8,
-  "downfall": 0.4,
-  "has_precipitation": true,
+  "temperature": 2.0,
+  "downfall": 0.0,
+  "has_precipitation": false,
   "temperature_modifier": "none",
   "effects": {
     "fog_color": 12638463,
     "water_color": 4159204,
     "water_fog_color": 329011,
-    "sky_color": 7907327,
-    "particle": {
-      "options": {
-        "type": "minecraft:dripping_lava"
-      },
-      "probability": 0.5
-    }
+    "sky_color": 7259519
   },
   "spawners": {},
   "spawn_costs": {},
@@ -29,6 +23,8 @@
     [],
     [],
     [
+      "minecraft:patch_cactus",
+      "minecraft:patch_dead_bush",
       "aris:pebble_patch",
       "aris:slope_slabs"
     ],

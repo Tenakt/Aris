@@ -121,5 +121,6 @@ class ArisNeoForge(modBus: IEventBus) {
         }
 
         ArisSkillNetworking.init()
+        ModFeatures.register()
     }
 }

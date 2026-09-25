@@ -19,8 +19,8 @@ class ArisFabric : ModInitializer {
 
         Aris.initialize()
         ModBlocks.register()
-        ModFeatures.registerFabric()
-        ModBiomeSources.registerFabric()
+        ModFeatures.register()
+        ModBiomeSources.register()
         ArisSkillNetworking.init()
 
         Aris.LOGGER.info(

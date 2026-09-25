@@ -20,7 +20,7 @@ object ModFeatures {
             NoneFeatureConfiguration.CODEC
         )
 
-    fun registerFabric() {
+    fun register() {
         Registry.register(
             BuiltInRegistries.FEATURE,
             Aris.id("slope_slab"),

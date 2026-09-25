@@ -47,6 +47,7 @@ dependencies {
     implementation project(":common")
 
     implementation("dev.architectury:architectury-neoforge:${architectury_version}")
+    implementation ("org.jetbrains.kotlin:kotlin-reflect:2.4.20")
 
     // Knot
     implementation(
