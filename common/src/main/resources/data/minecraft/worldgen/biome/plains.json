@@ -13,7 +13,7 @@
       "options": {
         "type": "minecraft:spore_blossom_air"
       },
-      "probability": 0.3
+      "probability": 1
     }
   },
   "spawners": {},

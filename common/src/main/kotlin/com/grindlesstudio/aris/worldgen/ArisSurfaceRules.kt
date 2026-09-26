@@ -8,7 +8,6 @@ import net.minecraft.world.level.levelgen.VerticalAnchor
 import net.minecraft.world.level.levelgen.placement.CaveSurface
 
 object ArisSurfaceRules {
-    // Блоки
     private val BEDROCK = makeStateRule(Blocks.BEDROCK)
     private val SAND = makeStateRule(Blocks.SAND)
     private val SANDSTONE = makeStateRule(Blocks.SANDSTONE)
