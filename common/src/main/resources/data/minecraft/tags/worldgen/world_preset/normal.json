@@ -1,11 +1,11 @@
 {
   "replace": false,
   "values": [
+    "aris:aris",
     "minecraft:normal",
     "minecraft:flat",
     "minecraft:large_biomes",
     "minecraft:amplified",
-    "minecraft:single_biome_surface",
-    "aris:aris"
+    "minecraft:single_biome_surface"
   ]
 }

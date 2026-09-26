@@ -14,6 +14,8 @@ import net.minecraft.world.effect.MobEffects
 
 object ArisSkillNetworking {
 
+    private var isInitialized = false
+
     data class UnlockSkillPacket(
         val skillId: String
     ) : CustomPacketPayload {
@@ -75,6 +77,9 @@ object ArisSkillNetworking {
     }
 
     fun init() {
+        if (isInitialized) return
+        isInitialized = true
+
         Knot.NETWORKING.registerServerbound(
             UnlockSkillPacket.TYPE,
             UnlockSkillPacket.CODEC,

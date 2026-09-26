@@ -9,7 +9,7 @@ object ModBiomeSources {
 
     val ARIS_CODEC = ArisBiomeSource.CODEC
 
-    fun registerFabric() {
+    fun register() {
         Registry.register(
             BuiltInRegistries.BIOME_SOURCE,
             Aris.id("aris"),

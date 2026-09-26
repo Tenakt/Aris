@@ -106,6 +106,11 @@ class ArisNeoForge(modBus: IEventBus) {
                 Aris.id("slope_slab"),
                 ModFeatures.SLOPE_SLAB
             )
+
+            registry.register(
+                Aris.id("village_road"),
+                ModFeatures.VILLAGE_ROAD
+            )
         }
 
         // ============================================================
@@ -120,6 +125,12 @@ class ArisNeoForge(modBus: IEventBus) {
             )
         }
 
+        // ============================================================
+        // SKILL NETWORKING
+        // ============================================================
+
         ArisSkillNetworking.init()
+
+        Aris.LOGGER.info("Aris features registered")
     }
 }
