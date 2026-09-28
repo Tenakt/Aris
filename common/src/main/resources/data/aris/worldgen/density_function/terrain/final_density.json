@@ -1,13 +1,15 @@
 {
   "type": "minecraft:add",
-  "argument1": {
+  "left": {
     "type": "minecraft:cache_2d",
-    "argument": "aris:terrain/terrain_height"
+    "input": "aris:terrain/terrain_height"
   },
-  "argument2": {
-    "type": "minecraft:y_clamped_gradient",
-    "from_y": -64,
-    "to_y": 320,
+  "right": {
+    "type": "minecraft:gradient",
+    "axis": "y",
+    "tiling": "clamp_to_edge",
+    "from_coordinate": -64,
+    "to_coordinate": 320,
     "from_value": 64.0,
     "to_value": -320.0
   }

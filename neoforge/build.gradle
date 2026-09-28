@@ -1,8 +1,6 @@
 plugins {
-    id "net.neoforged.moddev" version "2.0.107"
+    id "net.neoforged.moddev" version "2.0.147"
 }
-
-evaluationDependsOn(":common")
 
 base {
     archivesName = "${project.mod_id}-neoforge"
@@ -46,96 +44,21 @@ neoForge {
 dependencies {
     implementation project(":common")
 
-    implementation("dev.architectury:architectury-neoforge:${architectury_version}")
-    implementation ("org.jetbrains.kotlin:kotlin-reflect:2.4.20")
-
-    // Knot
-    implementation(
-            "com.daqem.knot:knot-neoforge:${knot_version}"
-    )
-
-    // Kotlin for Forge
-    implementation(
-            "maven.modrinth:ordsPcFz:${neoforge_kotlin_version}"
-    )
-
-    // UI Lib
-    implementation(
-            "com.daqem.uilib:uilib-neoforge:${uilib_version}"
-    )
-
-    // YAML Config
-    implementation(
-            "curse.maven:yaml-config-1128669:8188614"
-    )
-
-    // Arc Lib
-    implementation(
-            "curse.maven:arc-883593:7654923"
-    )
-
-    // Item Restrictions
-    implementation(
-            "curse.maven:item-restrictions-887774:7650343"
-    )
-
-    // TerraBlender
-    implementation(
-            "maven.modrinth:kkmrDlKT:${terrablender_neoforge_id}"
-    )
-
-    // Lithostitched
-    implementation(
-            "maven.modrinth:XaDC71GB:GXKf1eIb"
-    )
-
-    // SmartBrainLib
-    implementation(
-            "net.tslat.smartbrainlib:SmartBrainLib-neoforge-${minecraft_version}:${sbl_version}"
-    )
-
-    // Moog's Structure Lib
-    implementation(
-            "maven.modrinth:1oUDhxuy:5MelBDO6"
-    )
-
-    // Geckolib
-    implementation(
-            "maven.modrinth:8BmcQJ2H:FpONDAt3"
-    )
-
-    // JEI compile only
-    compileOnly(
-            "mezz.jei:jei-${minecraft_version}-neoforge-api:latest.release"
-    )
-
-    // JEI runtime
-    runtimeOnly(
-            "mezz.jei:jei-${minecraft_version}-neoforge:latest.release"
-    )
-
-    // Better Combat
-    implementation(
-            "maven.modrinth:5sy6g3kz:lkzLyXbV"
-    )
-
-    // Player Animation Library
-    implementation(
-            "curse.maven:player-animation-library-1283899:8507833"
-    )
-
-    // Cloth Config API
-    implementation(
-            "maven.modrinth:9s6osm5g:Wsus0EWg"
-    )
+    implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlin_version}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.release = 21
+    options.release = 25
+}
+
+kotlin {
+    jvmToolchain(25)
 }
 
 jar {
     dependsOn(":common:classes")
+
     from(project(":common").sourceSets.main.output)
 }
 

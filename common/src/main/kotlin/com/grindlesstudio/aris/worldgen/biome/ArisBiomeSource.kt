@@ -5,6 +5,7 @@ import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.core.Holder
 import net.minecraft.world.level.biome.Biome
+import net.minecraft.world.level.biome.BiomeResolver
 import net.minecraft.world.level.biome.BiomeSource
 import net.minecraft.world.level.biome.Climate
 import java.util.stream.Stream
@@ -34,22 +35,25 @@ class ArisBiomeSource(
         return CODEC
     }
 
-    override fun getNoiseBiome(
+    override fun createResolver(sampler: Climate.Sampler): BiomeResolver {
+        return BiomeResolver { x, y, z ->
+            getNoiseBiome(x, y, z, sampler)
+        }
+    }
+
+    fun getNoiseBiome(
         x: Int,
         y: Int,
         z: Int,
         noise: Climate.Sampler
     ): Holder<Biome> {
-        // 1. Получаем точное значение континентальности из генератора шумов Minecraft (от -1.0 до 1.0)
         val targetPoint = noise.sample(x, y, z)
         val continentalness = Climate.unquantizeCoord(targetPoint.continentalness())
 
-        // 2. Если шумом зафиксирован океан (континентальность отрицательная), возвращаем биом океана
         if (continentalness <= -0.30f) {
             return ocean
         }
 
-        // 3. Для суши определяем наземный биом (равнины, тайга, горы)
         val blockX = x shl 2
         val blockZ = z shl 2
         val region = ArisBiomeRegion.getRegion(blockX, blockZ, 0L)

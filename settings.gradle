@@ -10,13 +10,8 @@ pluginManagement {
 			url = "https://maven.neoforged.net/releases/"
 		}
 
-		maven {
-			name = "Architectury"
-			url = "https://maven.architectury.dev/"
-		}
-
-		mavenCentral()
 		gradlePluginPortal()
+		mavenCentral()
 	}
 }
 

@@ -1,31 +1,24 @@
 package com.grindlesstudio.aris.block
 
-import com.mojang.serialization.MapCodec
-import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
-import net.minecraft.util.RandomSource
-import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.LeavesBlock
+import net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer
+import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraft.world.level.block.state.BlockState
+import java.util.Optional
 
 class ArisLeavesBlock(
-    properties: Properties
+    properties: BlockBehaviour.Properties
 ) : LeavesBlock(
-    0.02f,
+    AmbientLeavesBlockSoundPlayer(
+        Optional.empty(),
+        0,
+        Optional.empty(),
+        0,
+        0
+    ),
     properties
 ) {
-
-    override fun codec(): MapCodec<out LeavesBlock> {
-        return MapCodec.unit(this)
-    }
-
-    override fun spawnFallingLeavesParticle(
-        level: Level,
-        pos: BlockPos,
-        random: RandomSource
-    ) {
-        // Частицы отключены
-    }
 
     override fun skipRendering(
         state: BlockState,

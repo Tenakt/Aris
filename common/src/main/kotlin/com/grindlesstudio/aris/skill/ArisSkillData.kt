@@ -3,6 +3,7 @@ package com.grindlesstudio.aris.skill
 import com.grindlesstudio.aris.Aris
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
+import net.minecraft.resources.Identifier
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.util.datafix.DataFixTypes
@@ -71,7 +72,7 @@ class ArisSkillData private constructor(
             }
 
         val TYPE = SavedDataType(
-            "skill_data",
+            Identifier.fromNamespaceAndPath(Aris.MOD_ID, "skill_data"),
             ::ArisSkillData,
             CODEC,
             DataFixTypes.LEVEL

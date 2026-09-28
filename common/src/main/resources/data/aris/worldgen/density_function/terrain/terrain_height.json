@@ -1,17 +1,17 @@
 {
   "type": "minecraft:add",
-  "argument1": "aris:terrain/land_height",
-  "argument2": {
+  "left": "aris:terrain/land_height",
+  "right": {
     "type": "minecraft:add",
-    "argument1": {
+    "left": {
       "type": "minecraft:mul",
-      "argument1": "aris:terrain/mountain_mask",
-      "argument2": "aris:terrain/mountain_height"
+      "left": "aris:terrain/mountain_mask",
+      "right": "aris:terrain/mountain_height"
     },
-    "argument2": {
+    "right": {
       "type": "minecraft:mul",
-      "argument1": "aris:terrain/valley_mask",
-      "argument2": -25.0
+      "left": "aris:terrain/valley_mask",
+      "right": -25.0
     }
   }
 }

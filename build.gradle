@@ -1,21 +1,4 @@
-buildscript {
-	repositories {
-		mavenCentral()
-		gradlePluginPortal()
-		maven {
-			name = "Architectury"
-			url = "https://maven.architectury.dev/"
-		}
-	}
-
-	dependencies {
-		classpath("gradle.plugin.org.jetbrains.gradle.plugin.idea-ext:gradle-idea-ext:1.4.1")
-	}
-}
-
 plugins {
-	id "architectury-plugin" version "3.5-SNAPSHOT" apply false
-	id "dev.architectury.loom" version "1.17-SNAPSHOT" apply false
 	id "org.jetbrains.kotlin.jvm" version "2.4.20" apply false
 }
 
@@ -26,58 +9,39 @@ allprojects {
 	repositories {
 		mavenCentral()
 
-		// Modrinth
-		maven {
-			name = "Modrinth"
-			url = "https://api.modrinth.com/maven"
-		}
-
-		// SmartBrainLib
-		maven {
-			name = 'SmartBrainLib'
-			url = 'https://dl.cloudsmith.io/public/tslat/sbl/maven/'
-		}
-
-		// CurseForge
-		maven {
-			name = "CurseForge"
-			url = "https://www.cursemaven.com"
-		}
-
-		// DAQEM
-		maven {
-			name = "DAQEM Studios Maven"
-			url = 'https://maven.daqem.com/releases'
-		}
-
-
-		// Fabric
 		maven {
 			name = "Fabric"
 			url = "https://maven.fabricmc.net/"
 		}
 
-		// NeoForge
+		maven {
+			name = "Modrinth"
+			url = "https://api.modrinth.com/maven"
+		}
+
+		maven {
+			name = "CurseForge"
+			url = "https://www.cursemaven.com"
+		}
+
 		maven {
 			name = "NeoForge"
 			url = "https://maven.neoforged.net/releases/"
 		}
 
-		// Architectury
 		maven {
-			name = "Architectury"
-			url = "https://maven.architectury.dev/"
+			name = "SmartBrainLib"
+			url = "https://dl.cloudsmith.io/public/tslat/sbl/maven/"
 		}
 
-		// JEI
 		maven {
-			name = "Jared's maven"
+			name = "Jared's Maven"
 			url = "https://maven.blamejared.com/"
 		}
 
 		maven {
 			name = "RedlanceMinecraft"
-			url = uri("https://repo.redlance.org/public")
+			url = "https://repo.redlance.org/public"
 		}
 	}
 }
@@ -85,21 +49,20 @@ allprojects {
 subprojects {
 	apply plugin: "java"
 	apply plugin: "org.jetbrains.kotlin.jvm"
-	apply plugin: "architectury-plugin"
 
 	java {
 		toolchain {
-			languageVersion = JavaLanguageVersion.of(21)
+			languageVersion = JavaLanguageVersion.of(25)
 		}
 
 		withSourcesJar()
 	}
 
 	kotlin {
-		jvmToolchain(21)
+		jvmToolchain(25)
 	}
 
 	tasks.withType(JavaCompile).configureEach {
-		options.release = 21
+		options.release = 25
 	}
 }

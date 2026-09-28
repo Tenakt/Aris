@@ -1,56 +1,54 @@
 package com.grindlesstudio.aris.worldgen.feature
 
 import com.grindlesstudio.aris.block.ModBlocks
-import com.mojang.serialization.Codec
+import com.mojang.serialization.MapCodec
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
+import net.minecraft.util.RandomSource
+import net.minecraft.world.level.WorldGenLevel
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SlabBlock
 import net.minecraft.world.level.block.state.properties.SlabType
+import net.minecraft.world.level.chunk.ChunkGenerator
 import net.minecraft.world.level.levelgen.Heightmap
 import net.minecraft.world.level.levelgen.feature.Feature
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration
 
-class SlopeSlabFeature(
-    configCodec: Codec<NoneFeatureConfiguration>
-) : Feature<NoneFeatureConfiguration>(configCodec) {
+class SlopeSlabFeature : Feature {
+
+    override fun codec(): MapCodec<out Feature> {
+        return CODEC
+    }
 
     override fun place(
-        context: FeaturePlaceContext<NoneFeatureConfiguration>
+        level: WorldGenLevel,
+        chunkGenerator: ChunkGenerator,
+        random: RandomSource,
+        origin: BlockPos
     ): Boolean {
 
-        val world = context.level()
-        val origin = context.origin()
-
         for (x in 0..15) {
-
             for (z in 0..15) {
 
                 val currentX = origin.x + x
                 val currentZ = origin.z + z
 
                 val surfaceY =
-                    world.getHeight(
+                    level.getHeight(
                         Heightmap.Types.WORLD_SURFACE_WG,
                         currentX,
                         currentZ
                     ) - 1
 
-                val pos =
-                    BlockPos(
-                        currentX,
-                        surfaceY,
-                        currentZ
-                    )
+                val pos = BlockPos(
+                    currentX,
+                    surfaceY,
+                    currentZ
+                )
 
-                val state =
-                    world.getBlockState(pos)
+                val state = level.getBlockState(pos)
+                val abovePos = pos.above()
 
-                val abovePos =
-                    pos.above()
-
-                if (!world.getBlockState(abovePos).isAir) {
+                if (!level.getBlockState(abovePos).isAir) {
                     continue
                 }
 
@@ -58,18 +56,16 @@ class SlopeSlabFeature(
 
                 for (dir in Direction.Plane.HORIZONTAL) {
 
-                    val neighborPos =
-                        pos.relative(dir)
+                    val neighborPos = pos.relative(dir)
 
                     val neighborY =
-                        world.getHeight(
+                        level.getHeight(
                             Heightmap.Types.WORLD_SURFACE_WG,
                             neighborPos.x,
                             neighborPos.z
                         ) - 1
 
                     if (neighborY == surfaceY + 1) {
-
                         isStep = true
                         break
                     }
@@ -118,15 +114,14 @@ class SlopeSlabFeature(
 
                 if (slabState != null) {
 
-                    world.setBlock(
+                    level.setBlock(
                         abovePos,
                         slabState,
                         3
                     )
 
                     if (state.`is`(Blocks.GRASS_BLOCK)) {
-
-                        world.setBlock(
+                        level.setBlock(
                             pos,
                             Blocks.DIRT.defaultBlockState(),
                             3
@@ -137,5 +132,11 @@ class SlopeSlabFeature(
         }
 
         return true
+    }
+
+    companion object {
+
+        val CODEC: MapCodec<SlopeSlabFeature> =
+            MapCodec.unit(::SlopeSlabFeature)
     }
 }
